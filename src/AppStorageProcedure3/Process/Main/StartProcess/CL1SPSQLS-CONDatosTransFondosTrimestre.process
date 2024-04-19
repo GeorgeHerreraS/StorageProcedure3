@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pfx="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:pfx2="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/sp_hob_cna_dts_tef_trm.xsd" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:pfx4="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" xmlns:ns2="http://itg.isban.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:ns1="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions" xmlns:ns4="http://www.tibco.com/pe/DeployedVarsType" xmlns:ns3="http://www.tibco.com/pe/EngineTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns5="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003">
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" schemaLocation="/Resources/Schemas/Error.xsd"/>
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/sp_hob_cna_dts_tef_trm.xsd" schemaLocation="/Resources/Schemas/sp_hob_cna_dts_tef_trm.xsd"/>
+    <pd:name>Process/Main/StartProcess/CL1SPSQLS-CONDatosTransFondosTrimestre.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx2:INPUT"/>
+    <pd:startX>40</pd:startX>
+    <pd:startY>56</pd:startY>
+    <pd:returnBindings>
+        <xsl:choose>
+            <xsl:when test="not(exists($_error/ns3:ErrorReport/MsgCode))">
+                <xsl:choose>
+                    <xsl:when test="$sp_hob_cna_dts_tef_trm/resultSet/outputSet/RETURN_VALUE = 0">
+                        <pfx2:Response_sp_hob_cna_dts_tef_trm>
+                            <ns5:INFO>
+                                <ns5:Codigo>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoOk"/>
+                                </ns5:Codigo>
+                                <ns5:Descripcion>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MensajeOk"/>
+                                </ns5:Descripcion>
+                            </ns5:INFO>
+                            <pfx2:OUTPUT>
+                                <pfx2:Escalares>
+                                    <xsl:if test="not(($sp_hob_cna_dts_tef_trm/resultSet/outputSet/RETURN_VALUE/@xsi:nil=(&quot;true&quot;)) or ($sp_hob_cna_dts_tef_trm/resultSet/outputSet/RETURN_VALUE/@xsi:nil=(&quot;1&quot;)))">
+                                        <pfx2:ReturnValue>
+                                            <xsl:value-of select="$sp_hob_cna_dts_tef_trm/resultSet/outputSet/RETURN_VALUE"/>
+                                        </pfx2:ReturnValue>
+                                    </xsl:if>
+                                </pfx2:Escalares>
+                                <pfx2:Resultsets>
+                                    <pfx2:ResultSet1>
+                                        <xsl:for-each select="$sp_hob_cna_dts_tef_trm/resultSet/Resultsets/ResultSet1/Record1">
+                                            <pfx2:Record1>
+                                                <pfx2:fch_hra_lnz_trn>
+                                                    <xsl:value-of select="fch_hra_lnz_trn"/>
+                                                </pfx2:fch_hra_lnz_trn>
+                                                <pfx2:cod_est_tef>
+                                                    <xsl:value-of select="cod_est_tef"/>
+                                                </pfx2:cod_est_tef>
+                                                <pfx2:cod_tpo_tef>
+                                                    <xsl:value-of select="cod_tpo_tef"/>
+                                                </pfx2:cod_tpo_tef>
+                                                <pfx2:fch_ctb>
+                                                    <xsl:value-of select="fch_ctb"/>
+                                                </pfx2:fch_ctb>
+                                                <pfx2:fch_hra_cgo>
+                                                    <xsl:value-of select="fch_hra_cgo"/>
+                                                </pfx2:fch_hra_cgo>
+                                                <pfx2:nro_cta_cgo_usr_innet>
+                                                    <xsl:value-of select="nro_cta_cgo_usr_innet"/>
+                                                </pfx2:nro_cta_cgo_usr_innet>
+                                                <pfx2:nro_cta_abn>
+                                                    <xsl:value-of select="nro_cta_abn"/>
+                                                </pfx2:nro_cta_abn>
+                                                <pfx2:nro_doc_abn>
+                                                    <xsl:value-of select="nro_doc_abn"/>
+                                                </pfx2:nro_doc_abn>
+                                                <pfx2:nom_bfc>
+                                                    <xsl:value-of select="nom_bfc"/>
+                                                </pfx2:nom_bfc>
+                                                <pfx2:cod_bco_cca>
+                                                    <xsl:value-of select="cod_bco_cca"/>
+                                                </pfx2:cod_bco_cca>
+                                                <pfx2:mnt_tef>
+                                                    <xsl:value-of select="mnt_tef"/>
+                                                </pfx2:mnt_tef>
+                                                <pfx2:fch_abn>
+                                                    <xsl:value-of select="fch_abn"/>
+                                                </pfx2:fch_abn>
+                                                <pfx2:cod_aplc>
+                                                    <xsl:value-of select="cod_aplc"/>
+                                                </pfx2:cod_aplc>
+                                                <pfx2:cod_tml>
+                                                    <xsl:value-of select="cod_tml"/>
+                                                </pfx2:cod_tml>
+                                                <pfx2:gls_email_avs_tef>
+                                                    <xsl:value-of select="gls_email_avs_tef"/>
+                                                </pfx2:gls_email_avs_tef>
+                                                <pfx2:cod_rch_tef>
+                                                    <xsl:value-of select="cod_rch_tef"/>
+                                                </pfx2:cod_rch_tef>
+                                                <pfx2:cod_tpo_doc_abn>
+                                                    <xsl:value-of select="cod_tpo_doc_abn"/>
+                                                </pfx2:cod_tpo_doc_abn>
+                                                <pfx2:flg_slt_otp>
+                                                    <xsl:value-of select="flg_slt_otp"/>
+                                                </pfx2:flg_slt_otp>
+                                            </pfx2:Record1>
+                                        </xsl:for-each>
+                                    </pfx2:ResultSet1>
+                                </pfx2:Resultsets>
+                            </pfx2:OUTPUT>
+                        </pfx2:Response_sp_hob_cna_dts_tef_trm>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <pfx2:Response_sp_hob_cna_dts_tef_trm>
+                            <ns5:INFO>
+                                <ns5:Codigo>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoError"/>
+                                </ns5:Codigo>
+                                <ns5:Descripcion>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MensajeError"/>
+                                </ns5:Descripcion>
+                            </ns5:INFO>
+                            <pfx2:OUTPUT>
+                                <pfx2:Escalares>
+                                    <xsl:if test="not(($sp_hob_cna_dts_tef_trm/resultSet/outputSet/RETURN_VALUE/@xsi:nil=(&quot;true&quot;)) or ($sp_hob_cna_dts_tef_trm/resultSet/outputSet/RETURN_VALUE/@xsi:nil=(&quot;1&quot;)))">
+                                        <pfx2:ReturnValue>
+                                            <xsl:value-of select="$sp_hob_cna_dts_tef_trm/resultSet/outputSet/RETURN_VALUE"/>
+                                        </pfx2:ReturnValue>
+                                    </xsl:if>
+                                </pfx2:Escalares>
+                            </pfx2:OUTPUT>
+                        </pfx2:Response_sp_hob_cna_dts_tef_trm>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx2:Response_sp_hob_cna_dts_tef_trm>
+                    <ns5:INFO>
+                        <ns5:Codigo>
+                            <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                        </ns5:Codigo>
+                        <ns5:Descripcion>
+                            <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                        </ns5:Descripcion>
+                    </ns5:INFO>
+                </pfx2:Response_sp_hob_cna_dts_tef_trm>
+            </xsl:otherwise>
+        </xsl:choose>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx2:Response_sp_hob_cna_dts_tef_trm"/>
+    <pd:endX>507</pd:endX>
+    <pd:endY>63</pd:endY>
+    <pd:errorSchemas>
+        <SchemaError ref="pfx2:Response_sp_hob_cna_dts_tef_trm"/>
+    </pd:errorSchemas>
+    <pd:processVariables/>
+    <pd:targetNamespace>https://itg.santander.cl/AppStoreProcedure3/Process/Main/StartProcess/CL1SPSQLS-CONDatosTransFondosTrimestre</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>606</pd:x>
+        <pd:y>188</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <fault>localname=JDBCSQLException namespace=http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions</fault>
+            <catchAll>true</catchAll>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Generate Error">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>492</pd:x>
+        <pd:y>190</pd:y>
+        <config>
+            <faultName>SchemaError</faultName>
+        </config>
+        <pd:inputBindings>
+            <pfx:ActivityInput>
+                <data>
+                    <pfx2:Response_sp_hob_cna_dts_tef_trm>
+                        <ns5:INFO>
+                            <ns5:Codigo>
+                                <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                            </ns5:Codigo>
+                            <ns5:Descripcion>
+                                <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                            </ns5:Descripcion>
+                        </ns5:INFO>
+                    </pfx2:Response_sp_hob_cna_dts_tef_trm>
+                </data>
+            </pfx:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogEntrada">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>132</pd:x>
+        <pd:y>57</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="tib:render-xml($Start/pfx2:INPUT)"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogError">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>379</pd:x>
+        <pd:y>188</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Mensaje"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                </msgCode>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogSalida">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>390</pd:x>
+        <pd:y>60</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="concat('Salida sp_hob_cna_dts_tef_trm : ',tib:render-xml($sp_hob_cna_dts_tef_trm/resultSet/outputSet))"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="MapError">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>256</pd:x>
+        <pd:y>187</pd:y>
+        <config>
+            <element ref="pfx4:Error"/>
+        </config>
+        <pd:inputBindings>
+            <xsl:choose>
+                <xsl:when test="count($_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCDriverLoadingException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCDriverLoadingException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCDriverLoadingException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCConnectionNotFoundException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCConnectionNotFoundException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCConnectionNotFoundException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al intentar acceder a Base de datos&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:InvalidTimeZoneException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:InvalidTimeZoneException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:InvalidTimeZoneException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCSQLException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCSQLException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCSQLException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'Ha ocurrido una excepción.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:JDBCTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:LoginTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:LoginTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_sp_hob_cna_dts_tef_trm/ActivityErrors/ns1:LoginTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/MsgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/StackTrace"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:otherwise>
+            </xsl:choose>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="sp_hob_cna_dts_tef_trm">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>250</pd:x>
+        <pd:y>59</pd:y>
+        <config>
+            <timeout>%%CONNECTIONS/BBDD/ORACLE/DB_SCCVIRT/TimeOut%%</timeout>
+            <maxRows>%%CONNECTIONS/BBDD/ORACLE/DB_SCCVIRT/MaxRows%%</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Resources/Connections/MSSQL/Hob_Tef.sharedjdbc</jdbcSharedConfig>
+            <schema>%%CONNECTIONS/BBDD/MSSQL/DB_Hob_Tef/Schema%%</schema>
+            <ProcedureName>sp_hob_cna_dts_tef_trm;1</ProcedureName>
+            <catalog/>
+            <useSchema>true</useSchema>
+            <commit>false</commit>
+            <oraObjects/>
+            <oraTables/>
+            <ResultSets>
+                <ResultSet>
+                    <QueryOutputCachedSchemaColumns>fch_hra_lnz_trn</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>93</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>cod_est_tef</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>5</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>cod_tpo_tef</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>5</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>fch_ctb</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>93</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>fch_hra_cgo</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>nro_cta_cgo_usr_innet</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>1</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>nro_cta_abn</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>1</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>nro_doc_abn</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>1</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>nom_bfc</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>cod_bco_cca</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>3</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>mnt_tef</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>2</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>fch_abn</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>93</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>cod_aplc</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>1</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>cod_tml</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>1</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>gls_email_avs_tef</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>cod_rch_tef</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>1</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>cod_tpo_doc_abn</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>1</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>flg_slt_otp</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>1</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+                </ResultSet>
+            </ResultSets>
+            <parameterTypes>
+                <parameter>
+                    <colName>@RETURN_VALUE</colName>
+                    <colType>5</colType>
+                    <dataType>4</dataType>
+                    <typeName>int</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@nro_doc_cgo</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>char</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@fch_des_trm</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>varchar</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@fch_has_trm</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>varchar</typeName>
+                </parameter>
+            </parameterTypes>
+        </config>
+        <pd:inputBindings>
+            <inputs>
+                <inputSet>
+                    <nro_doc_cgo>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:nro_doc_cgo"/>
+                    </nro_doc_cgo>
+                    <fch_des_trm>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:fch_des_trm"/>
+                    </fch_des_trm>
+                    <fch_has_trm>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:fch_has_trm"/>
+                    </fch_has_trm>
+                </inputSet>
+            </inputs>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>LogEntrada</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogSalida</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>MapError</pd:from>
+        <pd:to>LogError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogError</pd:from>
+        <pd:to>Generate Error</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogEntrada</pd:from>
+        <pd:to>sp_hob_cna_dts_tef_trm</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>sp_hob_cna_dts_tef_trm</pd:from>
+        <pd:to>MapError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>sp_hob_cna_dts_tef_trm</pd:from>
+        <pd:to>LogSalida</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

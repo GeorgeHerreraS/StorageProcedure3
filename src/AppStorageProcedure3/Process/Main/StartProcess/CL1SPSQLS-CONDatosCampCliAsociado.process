@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pfx6="http://www.tibco.com/schemas/AppStorageProcedure3/Resources/Schemas/Schema.xsd" xmlns:pfx7="http://www.tibco.com/ns/no_namespace_schema_location/Resources/Schemas/Salida_PR_HOB_CNA_DTS_CPN_CLI.xsd" xmlns:pfx="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:pfx4="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" xmlns:pfx5="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_HOB_CNA_DTS_CPN_CLI.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://itg.isban.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:ns1="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions" xmlns:ns4="http://www.tibco.com/pe/DeployedVarsType" xmlns:ns3="http://www.tibco.com/pe/EngineTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns5="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003">
+    <xsd:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" schemaLocation="/Resources/Schemas/Error.xsd"/>
+    <xsd:import namespace="http://www.tibco.com/ns/no_namespace_schema_location/Resources/Schemas/Salida_PR_HOB_CNA_DTS_CPN_CLI.xsd" schemaLocation="/Resources/Schemas/Salida_PR_HOB_CNA_DTS_CPN_CLI.xsd"/>
+    <xsd:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_HOB_CNA_DTS_CPN_CLI.xsd" schemaLocation="/Resources/Schemas/PR_HOB_CNA_DTS_CPN_CLI.xsd"/>
+    <pd:name>Process/Main/StartProcess/CL1SPSQLS-CONDatosCampCliAsociado.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx5:INPUT"/>
+    <pd:startX>40</pd:startX>
+    <pd:startY>56</pd:startY>
+    <pd:returnBindings>
+        <xsl:choose>
+            <xsl:when test="not(exists($_error/ns3:ErrorReport/MsgCode))">
+                <xsl:choose>
+                    <xsl:when test="$PR_HOB_CNA_DTS_CPN_CLI/resultSet/outputSet/RETURN_VALUE = 0">
+                        <pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI>
+                            <ns5:INFO>
+                                <ns5:Codigo>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoOk"/>
+                                </ns5:Codigo>
+                                <ns5:Descripcion>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MensajeOk"/>
+                                </ns5:Descripcion>
+                            </ns5:INFO>
+                            <pfx5:OUTPUT>
+                                <pfx5:Escalares>
+                                    <xsl:if test="not(($PR_HOB_CNA_DTS_CPN_CLI/resultSet/outputSet/RETURN_VALUE/@xsi:nil=(&quot;true&quot;)) or ($PR_HOB_CNA_DTS_CPN_CLI/resultSet/outputSet/RETURN_VALUE/@xsi:nil=(&quot;1&quot;)))">
+                                        <pfx5:ReturnValue>
+                                            <xsl:value-of select="$PR_HOB_CNA_DTS_CPN_CLI/resultSet/outputSet/RETURN_VALUE"/>
+                                        </pfx5:ReturnValue>
+                                    </xsl:if>
+                                </pfx5:Escalares>
+                                <pfx5:Resulsets>
+                                    <pfx5:ResultSet1>
+                                        <xsl:for-each select="$Parse-XML/Resultsets/ResultSet1/Record1">
+                                            <pfx5:Record1>
+                                                <xsl:if test="cod_cpn">
+                                                    <pfx5:cod_cpn>
+                                                        <xsl:value-of select="cod_cpn"/>
+                                                    </pfx5:cod_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="cod_tipo_vista_cpn">
+                                                    <pfx5:cod_tipo_vista_cpn>
+                                                        <xsl:value-of select="cod_tipo_vista_cpn"/>
+                                                    </pfx5:cod_tipo_vista_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="nom_sigla_cpn">
+                                                    <pfx5:nom_sigla_cpn>
+                                                        <xsl:value-of select="nom_sigla_cpn"/>
+                                                    </pfx5:nom_sigla_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="nom_cpn">
+                                                    <pfx5:nom_cpn>
+                                                        <xsl:value-of select="nom_cpn"/>
+                                                    </pfx5:nom_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="gls_tit_cpn">
+                                                    <pfx5:gls_tit_cpn>
+                                                        <xsl:value-of select="gls_tit_cpn"/>
+                                                    </pfx5:gls_tit_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="gls_det_cpn">
+                                                    <pfx5:gls_det_cpn>
+                                                        <xsl:value-of select="gls_det_cpn"/>
+                                                    </pfx5:gls_det_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="fch_ico_cpn">
+                                                    <pfx5:fch_ico_cpn>
+                                                        <xsl:value-of select="fch_ico_cpn"/>
+                                                    </pfx5:fch_ico_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="fch_fin_cpn">
+                                                    <pfx5:fch_fin_cpn>
+                                                        <xsl:value-of select="fch_fin_cpn"/>
+                                                    </pfx5:fch_fin_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="can_vsn_cpn">
+                                                    <pfx5:can_vsn_cpn>
+                                                        <xsl:value-of select="can_vsn_cpn"/>
+                                                    </pfx5:can_vsn_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="can_vsn_tot_cpn">
+                                                    <pfx5:can_vsn_tot_cpn>
+                                                        <xsl:value-of select="can_vsn_tot_cpn"/>
+                                                    </pfx5:can_vsn_tot_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="nro_vnt_ancho_cpn">
+                                                    <pfx5:nro_vnt_ancho_cpn>
+                                                        <xsl:value-of select="nro_vnt_ancho_cpn"/>
+                                                    </pfx5:nro_vnt_ancho_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="nro_vnt_alto_cpn">
+                                                    <pfx5:nro_vnt_alto_cpn>
+                                                        <xsl:value-of select="nro_vnt_alto_cpn"/>
+                                                    </pfx5:nro_vnt_alto_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="flg_vsn_nom_clt_cpn">
+                                                    <pfx5:flg_vsn_nom_clt_cpn>
+                                                        <xsl:value-of select="flg_vsn_nom_clt_cpn"/>
+                                                    </pfx5:flg_vsn_nom_clt_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="flg_vsn_det_clt_cpn">
+                                                    <pfx5:flg_vsn_det_clt_cpn>
+                                                        <xsl:value-of select="flg_vsn_det_clt_cpn"/>
+                                                    </pfx5:flg_vsn_det_clt_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="flg_vsn_tlf_clt_cpn">
+                                                    <pfx5:flg_vsn_tlf_clt_cpn>
+                                                        <xsl:value-of select="flg_vsn_tlf_clt_cpn"/>
+                                                    </pfx5:flg_vsn_tlf_clt_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="flg_vsn_cel_clt_cpn">
+                                                    <pfx5:flg_vsn_cel_clt_cpn>
+                                                        <xsl:value-of select="flg_vsn_cel_clt_cpn"/>
+                                                    </pfx5:flg_vsn_cel_clt_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="flg_vsn_hora_atncn_clt_cpn">
+                                                    <pfx5:flg_vsn_hora_atncn_clt_cpn>
+                                                        <xsl:value-of select="flg_vsn_hora_atncn_clt_cpn"/>
+                                                    </pfx5:flg_vsn_hora_atncn_clt_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="flg_env_email_clt_cpn">
+                                                    <pfx5:flg_env_email_clt_cpn>
+                                                        <xsl:value-of select="flg_env_email_clt_cpn"/>
+                                                    </pfx5:flg_env_email_clt_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="nom_img_fondo_cpn">
+                                                    <pfx5:nom_img_fondo_cpn>
+                                                        <xsl:value-of select="nom_img_fondo_cpn"/>
+                                                    </pfx5:nom_img_fondo_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="nom_img_prpgn_cpn">
+                                                    <pfx5:nom_img_prpgn_cpn>
+                                                        <xsl:value-of select="nom_img_prpgn_cpn"/>
+                                                    </pfx5:nom_img_prpgn_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="flg_env_ifm_cpn">
+                                                    <pfx5:flg_env_ifm_cpn>
+                                                        <xsl:value-of select="flg_env_ifm_cpn"/>
+                                                    </pfx5:flg_env_ifm_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="cod_estdo_cpn">
+                                                    <pfx5:cod_estdo_cpn>
+                                                        <xsl:value-of select="cod_estdo_cpn"/>
+                                                    </pfx5:cod_estdo_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="gls_pth_cpn">
+                                                    <pfx5:gls_pth_cpn>
+                                                        <xsl:value-of select="gls_pth_cpn"/>
+                                                    </pfx5:gls_pth_cpn>
+                                                </xsl:if>
+                                                <xsl:if test="nro_doc_psn">
+                                                    <pfx5:nro_doc_psn>
+                                                        <xsl:value-of select="nro_doc_psn"/>
+                                                    </pfx5:nro_doc_psn>
+                                                </xsl:if>
+                                                <xsl:if test="cod_tpo_doc_psn">
+                                                    <pfx5:cod_tpo_doc_psn>
+                                                        <xsl:value-of select="cod_tpo_doc_psn"/>
+                                                    </pfx5:cod_tpo_doc_psn>
+                                                </xsl:if>
+                                                <xsl:if test="nro_tlf_clt">
+                                                    <pfx5:nro_tlf_clt>
+                                                        <xsl:value-of select="nro_tlf_clt"/>
+                                                    </pfx5:nro_tlf_clt>
+                                                </xsl:if>
+                                                <xsl:if test="nro_cel_clt">
+                                                    <pfx5:nro_cel_clt>
+                                                        <xsl:value-of select="nro_cel_clt"/>
+                                                    </pfx5:nro_cel_clt>
+                                                </xsl:if>
+                                                <xsl:if test="gls_email_clt">
+                                                    <pfx5:gls_email_clt>
+                                                        <xsl:value-of select="gls_email_clt"/>
+                                                    </pfx5:gls_email_clt>
+                                                </xsl:if>
+                                                <xsl:if test="can_vista_cpn_clt">
+                                                    <pfx5:can_vista_cpn_clt>
+                                                        <xsl:value-of select="can_vista_cpn_clt"/>
+                                                    </pfx5:can_vista_cpn_clt>
+                                                </xsl:if>
+                                                <xsl:if test="flg_acp_cpn_clt">
+                                                    <pfx5:flg_acp_cpn_clt>
+                                                        <xsl:value-of select="flg_acp_cpn_clt"/>
+                                                    </pfx5:flg_acp_cpn_clt>
+                                                </xsl:if>
+                                                <xsl:if test="gls_det">
+                                                    <pfx5:gls_det>
+                                                        <xsl:value-of select="gls_det"/>
+                                                    </pfx5:gls_det>
+                                                </xsl:if>
+                                                <xsl:if test="vlr_det">
+                                                    <pfx5:vlr_det>
+                                                        <xsl:value-of select="vlr_det"/>
+                                                    </pfx5:vlr_det>
+                                                </xsl:if>
+                                            </pfx5:Record1>
+                                        </xsl:for-each>
+                                    </pfx5:ResultSet1>
+                                </pfx5:Resulsets>
+                            </pfx5:OUTPUT>
+                        </pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI>
+                            <ns5:INFO>
+                                <ns5:Codigo>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoError"/>
+                                </ns5:Codigo>
+                                <ns5:Descripcion>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MensajeError"/>
+                                </ns5:Descripcion>
+                            </ns5:INFO>
+                            <pfx5:OUTPUT>
+                                <pfx5:Escalares>
+                                    <xsl:if test="not(($PR_HOB_CNA_DTS_CPN_CLI/resultSet/outputSet/RETURN_VALUE/@xsi:nil=(&quot;true&quot;)) or ($PR_HOB_CNA_DTS_CPN_CLI/resultSet/outputSet/RETURN_VALUE/@xsi:nil=(&quot;1&quot;)))">
+                                        <pfx5:ReturnValue>
+                                            <xsl:value-of select="$PR_HOB_CNA_DTS_CPN_CLI/resultSet/outputSet/RETURN_VALUE"/>
+                                        </pfx5:ReturnValue>
+                                    </xsl:if>
+                                </pfx5:Escalares>
+                            </pfx5:OUTPUT>
+                        </pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI>
+                    <ns5:INFO>
+                        <ns5:Codigo>
+                            <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                        </ns5:Codigo>
+                        <ns5:Descripcion>
+                            <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                        </ns5:Descripcion>
+                    </ns5:INFO>
+                </pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI>
+            </xsl:otherwise>
+        </xsl:choose>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI"/>
+    <pd:endX>553</pd:endX>
+    <pd:endY>56</pd:endY>
+    <pd:errorSchemas>
+        <SchemaError ref="pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI"/>
+    </pd:errorSchemas>
+    <pd:processVariables/>
+    <pd:targetNamespace>https://itg.santander.cl/AppStoreProcedure3/Process/Main/StartProcess/CL1SPSQLS-CONDatosCampCliAsociado</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>684</pd:x>
+        <pd:y>56</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <fault>localname=JDBCSQLException namespace=http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions</fault>
+            <catchAll>true</catchAll>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Generate Error">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>460</pd:x>
+        <pd:y>173</pd:y>
+        <config>
+            <faultName>SchemaError</faultName>
+        </config>
+        <pd:inputBindings>
+            <pfx:ActivityInput>
+                <data>
+                    <pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI>
+                        <ns5:INFO>
+                            <ns5:Codigo>
+                                <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                            </ns5:Codigo>
+                            <ns5:Descripcion>
+                                <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                            </ns5:Descripcion>
+                        </ns5:INFO>
+                    </pfx5:Response_PR_HOB_CNA_DTS_CPN_CLI>
+                </data>
+            </pfx:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogEntrada">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>122</pd:x>
+        <pd:y>56</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="tib:render-xml($Start/pfx5:INPUT)"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogError">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>333</pd:x>
+        <pd:y>173</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Mensaje"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                </msgCode>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogSalida">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>449</pd:x>
+        <pd:y>56</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="concat('Salida PR_HOB_CNA_DTS_CPN_CLI : ',tib:render-xml($PR_HOB_CNA_DTS_CPN_CLI/resultSet/outputSet),tib:render-xml($Parse-XML/Resultsets))"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="MapError">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>238</pd:x>
+        <pd:y>173</pd:y>
+        <config>
+            <element ref="pfx4:Error"/>
+        </config>
+        <pd:inputBindings>
+            <xsl:choose>
+                <xsl:when test="count($_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCDriverLoadingException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCDriverLoadingException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCDriverLoadingException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCConnectionNotFoundException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCConnectionNotFoundException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCConnectionNotFoundException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al intentar acceder a Base de datos&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:InvalidTimeZoneException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:InvalidTimeZoneException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:InvalidTimeZoneException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCSQLException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCSQLException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCSQLException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'Ha ocurrido una excepción.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:JDBCTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:LoginTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:LoginTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_HOB_CNA_DTS_CPN_CLI/ActivityErrors/ns1:LoginTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/MsgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/StackTrace"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:otherwise>
+            </xsl:choose>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Parse XML">
+        <pd:type>com.tibco.plugin.xml.XMLParseActivity</pd:type>
+        <pd:resourceType>ae.activities.XMLParseActivity</pd:resourceType>
+        <pd:x>345</pd:x>
+        <pd:y>56</pd:y>
+        <config>
+            <inputStyle>text</inputStyle>
+            <xsdVersion>default</xsdVersion>
+            <validateOutput>true</validateOutput>
+            <term ref="pfx7:Resultsets"/>
+        </config>
+        <pd:inputBindings>
+            <xmlString>
+                <xsl:value-of select="$PR_HOB_CNA_DTS_CPN_CLI/resultSet/UnresolvedResultsets"/>
+            </xmlString>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="PR_HOB_CNA_DTS_CPN_CLI">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>237</pd:x>
+        <pd:y>56</pd:y>
+        <config>
+            <timeout>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/TimeOut%%</timeout>
+            <maxRows>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/MaxRows%%</maxRows>
+            <emptyStrAsNil>true</emptyStrAsNil>
+            <jdbcSharedConfig>/Resources/Connections/MSSQL/Hob.sharedjdbc</jdbcSharedConfig>
+            <ProcedureName>PR_HOB_CNA_DTS_CPN_CLI;1</ProcedureName>
+            <useSchema>true</useSchema>
+            <commit>false</commit>
+            <schema>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/Schema%%</schema>
+            <parameterTypes>
+                <parameter>
+                    <colName>@RETURN_VALUE</colName>
+                    <colType>5</colType>
+                    <dataType>4</dataType>
+                    <typeName>int</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@cod_cpn</colName>
+                    <colType>1</colType>
+                    <dataType>4</dataType>
+                    <typeName>int</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@nro_doc_psn</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>char</typeName>
+                </parameter>
+            </parameterTypes>
+        </config>
+        <pd:inputBindings>
+            <inputs>
+                <inputSet>
+                    <cod_cpn>
+                        <xsl:value-of select="$Start/pfx5:INPUT/pfx5:cod_cpn"/>
+                    </cod_cpn>
+                    <nro_doc_psn>
+                        <xsl:value-of select="$Start/pfx5:INPUT/pfx5:nro_doc_psn"/>
+                    </nro_doc_psn>
+                </inputSet>
+            </inputs>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>LogEntrada</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogEntrada</pd:from>
+        <pd:to>PR_HOB_CNA_DTS_CPN_CLI</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>PR_HOB_CNA_DTS_CPN_CLI</pd:from>
+        <pd:to>Parse XML</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogSalida</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Parse XML</pd:from>
+        <pd:to>LogSalida</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>PR_HOB_CNA_DTS_CPN_CLI</pd:from>
+        <pd:to>MapError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>MapError</pd:from>
+        <pd:to>LogError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogError</pd:from>
+        <pd:to>Generate Error</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:ns2="http://www.tibco.com/pe/EngineTypes" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns1="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns4="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:ns3="http://www.tibco.com/pe/DeployedVarsType" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:pfx3="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" xmlns:pfx2="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:pfx="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_CNSTA_CDPRE.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" schemaLocation="/Resources/Schemas/Error.xsd"/>
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_CNSTA_CDPRE.xsd" schemaLocation="/Resources/Schemas/SP_CNSTA_CDPRE.xsd"/>
+    <pd:name>Process/Main/StartProcess/CL1SPORAC-CONCertificadoCreditoPreAprobado.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx:INPUT"/>
+    <pd:startX>41</pd:startX>
+    <pd:startY>76</pd:startY>
+    <pd:returnBindings>
+        <xsl:choose>
+            <xsl:when test="not(exists($_error/ns2:ErrorReport/MsgCode))">
+                <pfx:Response_SP_CNSTA_CDPRE>
+                    <ns4:INFO>
+                        <ns4:Codigo>
+                            <xsl:value-of select="$_globalVariables/ns3:GlobalVariables/INFO/CodigoOk"/>
+                        </ns4:Codigo>
+                        <ns4:Descripcion>
+                            <xsl:value-of select="$_globalVariables/ns3:GlobalVariables/INFO/MensajeOk"/>
+                        </ns4:Descripcion>
+                    </ns4:INFO>
+                    <pfx:OUTPUT>
+                        <pfx:Escalares>
+                            <xsl:if test="not(($SP_CNSTA_CDPRE/resultSet/outputSet/WARNING/@xsi:nil=(&quot;true&quot;)) or ($SP_CNSTA_CDPRE/resultSet/outputSet/WARNING/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx:Warning>
+                                    <xsl:value-of select="$SP_CNSTA_CDPRE/resultSet/outputSet/WARNING"/>
+                                </pfx:Warning>
+                            </xsl:if>
+                            <xsl:if test="not(($SP_CNSTA_CDPRE/resultSet/outputSet/P_S_NUM_CRV_SLT/@xsi:nil=(&quot;true&quot;)) or ($SP_CNSTA_CDPRE/resultSet/outputSet/P_S_NUM_CRV_SLT/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx:NumCrvSlt>
+                                    <xsl:value-of select="$SP_CNSTA_CDPRE/resultSet/outputSet/P_S_NUM_CRV_SLT"/>
+                                </pfx:NumCrvSlt>
+                            </xsl:if>
+                            <xsl:if test="not(($SP_CNSTA_CDPRE/resultSet/outputSet/P_N_IDF_EST_SLT/@xsi:nil=(&quot;true&quot;)) or ($SP_CNSTA_CDPRE/resultSet/outputSet/P_N_IDF_EST_SLT/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx:IdfEstSlt>
+                                    <xsl:value-of select="$SP_CNSTA_CDPRE/resultSet/outputSet/P_N_IDF_EST_SLT"/>
+                                </pfx:IdfEstSlt>
+                            </xsl:if>
+                            <xsl:if test="not(($SP_CNSTA_CDPRE/resultSet/outputSet/P_N_IMP_CDP/@xsi:nil=(&quot;true&quot;)) or ($SP_CNSTA_CDPRE/resultSet/outputSet/P_N_IMP_CDP/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx:ImpCdp>
+                                    <xsl:value-of select="$SP_CNSTA_CDPRE/resultSet/outputSet/P_N_IMP_CDP"/>
+                                </pfx:ImpCdp>
+                            </xsl:if>
+                            <xsl:if test="not(($SP_CNSTA_CDPRE/resultSet/outputSet/P_S_FEC_APB_CDT/@xsi:nil=(&quot;true&quot;)) or ($SP_CNSTA_CDPRE/resultSet/outputSet/P_S_FEC_APB_CDT/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx:FecApbCdt>
+                                    <xsl:value-of select="$SP_CNSTA_CDPRE/resultSet/outputSet/P_S_FEC_APB_CDT"/>
+                                </pfx:FecApbCdt>
+                            </xsl:if>
+                            <xsl:if test="not(($SP_CNSTA_CDPRE/resultSet/outputSet/P_S_OBS_CDT/@xsi:nil=(&quot;true&quot;)) or ($SP_CNSTA_CDPRE/resultSet/outputSet/P_S_OBS_CDT/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx:ObsCdt>
+                                    <xsl:value-of select="$SP_CNSTA_CDPRE/resultSet/outputSet/P_S_OBS_CDT"/>
+                                </pfx:ObsCdt>
+                            </xsl:if>
+                        </pfx:Escalares>
+                    </pfx:OUTPUT>
+                </pfx:Response_SP_CNSTA_CDPRE>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="$Catch/pfx:Response_SP_CNSTA_CDPRE"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx:Response_SP_CNSTA_CDPRE"/>
+    <pd:endX>528</pd:endX>
+    <pd:endY>76</pd:endY>
+    <pd:errorSchemas>
+        <Error ref="pfx:Response_SP_CNSTA_CDPRE"/>
+    </pd:errorSchemas>
+    <pd:processVariables/>
+    <pd:targetNamespace>https://itg.santander.cl/AppStoreProcedure2/Process/Main/StartProcess/CL1SPORAC-CONCertificadoCreditoPreAprobado</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>639</pd:x>
+        <pd:y>76</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <fault>localname=Response_SP_CNSTA_CDPRE namespace=https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_CNSTA_CDPRE.xsd</fault>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Generate Error">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>489</pd:x>
+        <pd:y>183</pd:y>
+        <config>
+            <faultName>Error</faultName>
+        </config>
+        <pd:inputBindings>
+            <pfx2:ActivityInput>
+                <data>
+                    <pfx:Response_SP_CNSTA_CDPRE>
+                        <ns4:INFO>
+                            <ns4:Codigo>
+                                <xsl:value-of select="$_globalVariables/ns3:GlobalVariables/INFO/CodigoError"/>
+                            </ns4:Codigo>
+                            <ns4:Descripcion>
+                                <xsl:value-of select="$MapError/pfx3:Error/pfx3:MsgUsuario"/>
+                            </ns4:Descripcion>
+                        </ns4:INFO>
+                    </pfx:Response_SP_CNSTA_CDPRE>
+                </data>
+            </pfx2:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogEntrada">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>136</pd:x>
+        <pd:y>75</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="tib:render-xml($Start/pfx:INPUT)"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogSalida">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>381</pd:x>
+        <pd:y>76</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="concat('Salida SP_CNSTA_CDPRE: ',tib:render-xml($SP_CNSTA_CDPRE/resultSet/outputSet))"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogError">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>372</pd:x>
+        <pd:y>181</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$MapError/pfx3:Error/pfx3:Mensaje"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$MapError/pfx3:Error/pfx3:Codigo"/>
+                </msgCode>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="MapError">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>246</pd:x>
+        <pd:y>181</pd:y>
+        <config>
+            <element ref="pfx3:Error"/>
+        </config>
+        <pd:inputBindings>
+            <xsl:choose>
+                <xsl:when test="count($_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCDriverLoadingException)>0">
+                    <pfx3:Error>
+                        <pfx3:Codigo>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCDriverLoadingException/msgCode"/>
+                        </pfx3:Codigo>
+                        <pfx3:Mensaje>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCDriverLoadingException/msg"/>
+                        </pfx3:Mensaje>
+                        <pfx3:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx3:MsgUsuario>
+                    </pfx3:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCConnectionNotFoundException)>0">
+                    <pfx3:Error>
+                        <pfx3:Codigo>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCConnectionNotFoundException/msgCode"/>
+                        </pfx3:Codigo>
+                        <pfx3:Mensaje>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCConnectionNotFoundException/msg"/>
+                        </pfx3:Mensaje>
+                        <pfx3:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al intentar acceder a Base de datos&quot;"/>
+                        </pfx3:MsgUsuario>
+                    </pfx3:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:InvalidTimeZoneException)>0">
+                    <pfx3:Error>
+                        <pfx3:Codigo>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:InvalidTimeZoneException/msgCode"/>
+                        </pfx3:Codigo>
+                        <pfx3:Mensaje>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:InvalidTimeZoneException/msg"/>
+                        </pfx3:Mensaje>
+                        <pfx3:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx3:MsgUsuario>
+                    </pfx3:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCSQLException)>0">
+                    <pfx3:Error>
+                        <pfx3:Codigo>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCSQLException/msgCode"/>
+                        </pfx3:Codigo>
+                        <pfx3:Mensaje>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCSQLException/msg"/>
+                        </pfx3:Mensaje>
+                        <pfx3:MsgUsuario>
+                            <xsl:value-of select="'Ha ocurrido una excepción.'"/>
+                        </pfx3:MsgUsuario>
+                    </pfx3:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCTimedOutException)>0">
+                    <pfx3:Error>
+                        <pfx3:Codigo>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCTimedOutException/msgCode"/>
+                        </pfx3:Codigo>
+                        <pfx3:Mensaje>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:JDBCTimedOutException/msg"/>
+                        </pfx3:Mensaje>
+                        <pfx3:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx3:MsgUsuario>
+                    </pfx3:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:LoginTimedOutException)>0">
+                    <pfx3:Error>
+                        <pfx3:Codigo>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:LoginTimedOutException/msgCode"/>
+                        </pfx3:Codigo>
+                        <pfx3:Mensaje>
+                            <xsl:value-of select="$_error_SP_CNSTA_CDPRE/ActivityErrors/ns1:LoginTimedOutException/msg"/>
+                        </pfx3:Mensaje>
+                        <pfx3:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx3:MsgUsuario>
+                    </pfx3:Error>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pfx3:Error>
+                        <pfx3:Codigo>
+                            <xsl:value-of select="$_error/ns2:ErrorReport/MsgCode"/>
+                        </pfx3:Codigo>
+                        <pfx3:Mensaje>
+                            <xsl:value-of select="$_error/ns2:ErrorReport/StackTrace"/>
+                        </pfx3:Mensaje>
+                        <pfx3:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx3:MsgUsuario>
+                    </pfx3:Error>
+                </xsl:otherwise>
+            </xsl:choose>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="SP_CNSTA_CDPRE">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>245</pd:x>
+        <pd:y>76</pd:y>
+        <config>
+            <timeout>%%CONNECTIONS/BBDD/ORACLE/DB_ACGEN/TimeOut%%</timeout>
+            <maxRows>%%CONNECTIONS/BBDD/ORACLE/DB_ACGEN/MaxRows%%</maxRows>
+            <emptyStrAsNil>true</emptyStrAsNil>
+            <jdbcSharedConfig>/Resources/Connections/ORACLE/ACGEN.sharedjdbc</jdbcSharedConfig>
+            <schema>%%CONNECTIONS/BBDD/ORACLE/DB_ACGEN/Schema%%</schema>
+            <ProcedureName>SP_CNSTA_CDPRE</ProcedureName>
+            <parameterTypes>
+                <parameter>
+                    <colName>P_S_NUM_DOC_PSN</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>CHAR</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_S_DV</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>CHAR</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_S_NUM_CRV_SLT</colName>
+                    <colType>4</colType>
+                    <dataType>1</dataType>
+                    <typeName>CHAR</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_N_IDF_EST_SLT</colName>
+                    <colType>4</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_N_IMP_CDP</colName>
+                    <colType>4</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_S_FEC_APB_CDT</colName>
+                    <colType>4</colType>
+                    <dataType>1</dataType>
+                    <typeName>CHAR</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_S_OBS_CDT</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>WARNING</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+            </parameterTypes>
+            <useSchema>true</useSchema>
+        </config>
+        <pd:inputBindings>
+            <inputs>
+                <inputSet>
+                    <P_S_NUM_DOC_PSN>
+                        <xsl:value-of select="$Start/pfx:INPUT/pfx:NumDocPersona"/>
+                    </P_S_NUM_DOC_PSN>
+                    <P_S_DV>
+                        <xsl:value-of select="$Start/pfx:INPUT/pfx:DV"/>
+                    </P_S_DV>
+                </inputSet>
+            </inputs>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>LogEntrada</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SP_CNSTA_CDPRE</pd:from>
+        <pd:to>LogSalida</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogEntrada</pd:from>
+        <pd:to>SP_CNSTA_CDPRE</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogSalida</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SP_CNSTA_CDPRE</pd:from>
+        <pd:to>MapError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>MapError</pd:from>
+        <pd:to>LogError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogError</pd:from>
+        <pd:to>Generate Error</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

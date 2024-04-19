@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pfx="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:pfx2="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_HOB_CLT_CAL_VSN_CPN.xsd" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:pfx3="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/sp_hob_cna_dts_tef_trm.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:ns1="http://www.tibco.com/namespaces/tnt/plugins/json" xmlns:ns4="http://www.tibco.com/pe/EngineTypes" xmlns:ns3="http://www.tibco.com/pe/DeployedVarsType" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns5="http://schemas.tibco.com/bw/plugins/xml/5.0/RESTJSONExceptions" xmlns:pd="http://xmlns.tibco.com/bw/process/2003">
+    <xsd:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_HOB_CLT_CAL_VSN_CPN.xsd" schemaLocation="/Resources/Schemas/PR_HOB_CLT_CAL_VSN_CPN.xsd"/>
+    <xsd:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/sp_hob_cna_dts_tef_trm.xsd" schemaLocation="/Resources/Schemas/sp_hob_cna_dts_tef_trm.xsd"/>
+    <pd:name>Process/RestJson/wsCL1SPSQLS-CONDatosTransFondosTrimestre.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType>
+        <xsd:element name="INPUT">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="String" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </pd:startType>
+    <pd:startX>55</pd:startX>
+    <pd:startY>57</pd:startY>
+    <pd:returnBindings>
+        <OUTPUT>
+            <xsl:choose>
+                <xsl:when test="$Render-JSON/ns1:ActivityOutputClass !=''">
+                    <String>
+                        <xsl:value-of select="$Render-JSON/ns1:ActivityOutputClass/jsonString"/>
+                    </String>
+                </xsl:when>
+                <xsl:otherwise>
+                    <String>
+                        <xsl:value-of select="$Render-JSON/ns1:ActivityOutputClass/jsonString"/>
+                    </String>
+                </xsl:otherwise>
+            </xsl:choose>
+        </OUTPUT>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType>
+        <xsd:element name="OUTPUT">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="String" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </pd:endType>
+    <pd:endX>745</pd:endX>
+    <pd:endY>62</pd:endY>
+    <pd:errorSchemas>
+        <Error>
+            <xsd:element name="Output">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="String" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </Error>
+    </pd:errorSchemas>
+    <pd:processVariables/>
+    <pd:targetNamespace>https://itg.santander.cl/AppStoreProcedure3/Process/RestJson/wsCL1SPSQLS-CONDatosTransFondosTrimestre</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>276</pd:x>
+        <pd:y>272</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <catchAll>true</catchAll>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Parse JSON">
+        <pd:type>com.tibco.plugin.json.activities.JSONParserActivity</pd:type>
+        <pd:resourceType>ae.activities.JSONParserActivity</pd:resourceType>
+        <pd:x>264</pd:x>
+        <pd:y>60</pd:y>
+        <config>
+            <SchemaType>xsdType</SchemaType>
+            <BadgerfishCheck>false</BadgerfishCheck>
+            <ActivityOutputEditor ref="pfx3:INPUT"/>
+        </config>
+        <pd:inputBindings>
+            <ns1:ActivityInputClass>
+                <jsonString>
+                    <xsl:value-of select="$Start/INPUT/String"/>
+                </jsonString>
+            </ns1:ActivityInputClass>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Render JSON">
+        <pd:type>com.tibco.plugin.json.activities.JSONRenderActivity</pd:type>
+        <pd:resourceType>ae.activities.JSONRenderActivity</pd:resourceType>
+        <pd:x>507</pd:x>
+        <pd:y>62</pd:y>
+        <config>
+            <SchemaType>xsdType</SchemaType>
+            <BadgerfishCheck>false</BadgerfishCheck>
+            <ActivityInputEditor ref="pfx3:Response_sp_hob_cna_dts_tef_trm"/>
+        </config>
+        <pd:inputBindings>
+            <ns1:ActivityInputClass>
+                <xsl:choose>
+                    <xsl:when test="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/pfx3:OUTPUT/pfx3:Escalares/pfx3:ReturnValue = 0">
+                        <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                            <ns2:INFO>
+                                <ns2:Codigo>
+                                    <xsl:value-of select="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/ns2:INFO/ns2:Codigo"/>
+                                </ns2:Codigo>
+                                <ns2:Descripcion>
+                                    <xsl:value-of select="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/ns2:INFO/ns2:Descripcion"/>
+                                </ns2:Descripcion>
+                            </ns2:INFO>
+                            <pfx3:OUTPUT>
+                                <pfx3:Escalares>
+                                    <xsl:if test="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/pfx3:OUTPUT/pfx3:Escalares/pfx3:ReturnValue">
+                                        <pfx3:ReturnValue>
+                                            <xsl:value-of select="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/pfx3:OUTPUT/pfx3:Escalares/pfx3:ReturnValue"/>
+                                        </pfx3:ReturnValue>
+                                    </xsl:if>
+                                </pfx3:Escalares>
+                                <pfx3:Resultsets>
+                                    <pfx3:ResultSet1>
+                                        <xsl:for-each select="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/pfx3:OUTPUT/pfx3:Resultsets/pfx3:ResultSet1/pfx3:Record1">
+                                            <pfx3:Record1>
+                                                <xsl:if test="pfx3:fch_hra_lnz_trn">
+                                                    <pfx3:fch_hra_lnz_trn>
+                                                        <xsl:value-of select="pfx3:fch_hra_lnz_trn"/>
+                                                    </pfx3:fch_hra_lnz_trn>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:cod_est_tef">
+                                                    <pfx3:cod_est_tef>
+                                                        <xsl:value-of select="pfx3:cod_est_tef"/>
+                                                    </pfx3:cod_est_tef>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:cod_tpo_tef">
+                                                    <pfx3:cod_tpo_tef>
+                                                        <xsl:value-of select="pfx3:cod_tpo_tef"/>
+                                                    </pfx3:cod_tpo_tef>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:fch_ctb">
+                                                    <pfx3:fch_ctb>
+                                                        <xsl:value-of select="pfx3:fch_ctb"/>
+                                                    </pfx3:fch_ctb>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:fch_hra_cgo">
+                                                    <pfx3:fch_hra_cgo>
+                                                        <xsl:value-of select="pfx3:fch_hra_cgo"/>
+                                                    </pfx3:fch_hra_cgo>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:nro_cta_cgo_usr_innet">
+                                                    <pfx3:nro_cta_cgo_usr_innet>
+                                                        <xsl:value-of select="pfx3:nro_cta_cgo_usr_innet"/>
+                                                    </pfx3:nro_cta_cgo_usr_innet>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:nro_cta_abn">
+                                                    <pfx3:nro_cta_abn>
+                                                        <xsl:value-of select="pfx3:nro_cta_abn"/>
+                                                    </pfx3:nro_cta_abn>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:nro_doc_abn">
+                                                    <pfx3:nro_doc_abn>
+                                                        <xsl:value-of select="pfx3:nro_doc_abn"/>
+                                                    </pfx3:nro_doc_abn>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:nom_bfc">
+                                                    <pfx3:nom_bfc>
+                                                        <xsl:value-of select="pfx3:nom_bfc"/>
+                                                    </pfx3:nom_bfc>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:cod_bco_cca">
+                                                    <pfx3:cod_bco_cca>
+                                                        <xsl:value-of select="pfx3:cod_bco_cca"/>
+                                                    </pfx3:cod_bco_cca>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:mnt_tef">
+                                                    <pfx3:mnt_tef>
+                                                        <xsl:value-of select="pfx3:mnt_tef"/>
+                                                    </pfx3:mnt_tef>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:fch_abn">
+                                                    <pfx3:fch_abn>
+                                                        <xsl:value-of select="pfx3:fch_abn"/>
+                                                    </pfx3:fch_abn>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:cod_aplc">
+                                                    <pfx3:cod_aplc>
+                                                        <xsl:value-of select="pfx3:cod_aplc"/>
+                                                    </pfx3:cod_aplc>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:cod_tml">
+                                                    <pfx3:cod_tml>
+                                                        <xsl:value-of select="pfx3:cod_tml"/>
+                                                    </pfx3:cod_tml>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:gls_email_avs_tef">
+                                                    <pfx3:gls_email_avs_tef>
+                                                        <xsl:value-of select="pfx3:gls_email_avs_tef"/>
+                                                    </pfx3:gls_email_avs_tef>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:cod_rch_tef">
+                                                    <pfx3:cod_rch_tef>
+                                                        <xsl:value-of select="pfx3:cod_rch_tef"/>
+                                                    </pfx3:cod_rch_tef>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:cod_tpo_doc_abn">
+                                                    <pfx3:cod_tpo_doc_abn>
+                                                        <xsl:value-of select="pfx3:cod_tpo_doc_abn"/>
+                                                    </pfx3:cod_tpo_doc_abn>
+                                                </xsl:if>
+                                                <xsl:if test="pfx3:flg_slt_otp">
+                                                    <pfx3:flg_slt_otp>
+                                                        <xsl:value-of select="pfx3:flg_slt_otp"/>
+                                                    </pfx3:flg_slt_otp>
+                                                </xsl:if>
+                                            </pfx3:Record1>
+                                        </xsl:for-each>
+                                    </pfx3:ResultSet1>
+                                </pfx3:Resultsets>
+                            </pfx3:OUTPUT>
+                        </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                            <ns2:INFO>
+                                <ns2:Codigo>
+                                    <xsl:value-of select="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/ns2:INFO/ns2:Codigo"/>
+                                </ns2:Codigo>
+                                <ns2:Descripcion>
+                                    <xsl:value-of select="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/ns2:INFO/ns2:Descripcion"/>
+                                </ns2:Descripcion>
+                            </ns2:INFO>
+                            <pfx3:OUTPUT>
+                                <pfx3:Escalares>
+                                    <xsl:if test="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/pfx3:OUTPUT/pfx3:Escalares/pfx3:ReturnValue">
+                                        <pfx3:ReturnValue>
+                                            <xsl:value-of select="$CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/pfx3:OUTPUT/pfx3:Escalares/pfx3:ReturnValue"/>
+                                        </pfx3:ReturnValue>
+                                    </xsl:if>
+                                </pfx3:Escalares>
+                            </pfx3:OUTPUT>
+                        </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </ns1:ActivityInputClass>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Render-JSON-1">
+        <pd:type>com.tibco.plugin.json.activities.JSONRenderActivity</pd:type>
+        <pd:resourceType>ae.activities.JSONRenderActivity</pd:resourceType>
+        <pd:x>502</pd:x>
+        <pd:y>275</pd:y>
+        <config>
+            <SchemaType>xsdType</SchemaType>
+            <BadgerfishCheck>false</BadgerfishCheck>
+            <ActivityInputEditor ref="pfx3:Response_sp_hob_cna_dts_tef_trm"/>
+        </config>
+        <pd:inputBindings>
+            <ns1:ActivityInputClass>
+                <xsl:for-each select="$_error_CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm">
+                    <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                        <xsl:for-each select="ns2:INFO">
+                            <ns2:INFO>
+                                <ns2:Codigo>
+                                    <xsl:value-of select="ns2:Codigo"/>
+                                </ns2:Codigo>
+                                <ns2:Descripcion>
+                                    <xsl:value-of select="ns2:Descripcion"/>
+                                </ns2:Descripcion>
+                            </ns2:INFO>
+                        </xsl:for-each>
+                        <xsl:for-each select="pfx3:OUTPUT">
+                            <pfx3:OUTPUT>
+                                <xsl:for-each select="pfx3:Escalares">
+                                    <pfx3:Escalares>
+                                        <xsl:if test="pfx3:ReturnValue">
+                                            <pfx3:ReturnValue>
+                                                <xsl:value-of select="pfx3:ReturnValue"/>
+                                            </pfx3:ReturnValue>
+                                        </xsl:if>
+                                    </pfx3:Escalares>
+                                </xsl:for-each>
+                                <xsl:for-each select="pfx3:Resultsets">
+                                    <pfx3:Resultsets>
+                                        <xsl:for-each select="pfx3:ResultSet1">
+                                            <pfx3:ResultSet1>
+                                                <xsl:for-each select="pfx3:Record1">
+                                                    <pfx3:Record1>
+                                                        <xsl:if test="pfx3:fch_hra_lnz_trn">
+                                                            <pfx3:fch_hra_lnz_trn>
+                                                                <xsl:value-of select="pfx3:fch_hra_lnz_trn"/>
+                                                            </pfx3:fch_hra_lnz_trn>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:cod_est_tef">
+                                                            <pfx3:cod_est_tef>
+                                                                <xsl:value-of select="pfx3:cod_est_tef"/>
+                                                            </pfx3:cod_est_tef>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:cod_tpo_tef">
+                                                            <pfx3:cod_tpo_tef>
+                                                                <xsl:value-of select="pfx3:cod_tpo_tef"/>
+                                                            </pfx3:cod_tpo_tef>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:fch_ctb">
+                                                            <pfx3:fch_ctb>
+                                                                <xsl:value-of select="pfx3:fch_ctb"/>
+                                                            </pfx3:fch_ctb>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:fch_hra_cgo">
+                                                            <pfx3:fch_hra_cgo>
+                                                                <xsl:value-of select="pfx3:fch_hra_cgo"/>
+                                                            </pfx3:fch_hra_cgo>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:nro_cta_cgo_usr_innet">
+                                                            <pfx3:nro_cta_cgo_usr_innet>
+                                                                <xsl:value-of select="pfx3:nro_cta_cgo_usr_innet"/>
+                                                            </pfx3:nro_cta_cgo_usr_innet>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:nro_cta_abn">
+                                                            <pfx3:nro_cta_abn>
+                                                                <xsl:value-of select="pfx3:nro_cta_abn"/>
+                                                            </pfx3:nro_cta_abn>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:nro_doc_abn">
+                                                            <pfx3:nro_doc_abn>
+                                                                <xsl:value-of select="pfx3:nro_doc_abn"/>
+                                                            </pfx3:nro_doc_abn>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:nom_bfc">
+                                                            <pfx3:nom_bfc>
+                                                                <xsl:value-of select="pfx3:nom_bfc"/>
+                                                            </pfx3:nom_bfc>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:cod_bco_cca">
+                                                            <pfx3:cod_bco_cca>
+                                                                <xsl:value-of select="pfx3:cod_bco_cca"/>
+                                                            </pfx3:cod_bco_cca>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:mnt_tef">
+                                                            <pfx3:mnt_tef>
+                                                                <xsl:value-of select="pfx3:mnt_tef"/>
+                                                            </pfx3:mnt_tef>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:fch_abn">
+                                                            <pfx3:fch_abn>
+                                                                <xsl:value-of select="pfx3:fch_abn"/>
+                                                            </pfx3:fch_abn>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:cod_aplc">
+                                                            <pfx3:cod_aplc>
+                                                                <xsl:value-of select="pfx3:cod_aplc"/>
+                                                            </pfx3:cod_aplc>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:cod_tml">
+                                                            <pfx3:cod_tml>
+                                                                <xsl:value-of select="pfx3:cod_tml"/>
+                                                            </pfx3:cod_tml>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:gls_email_avs_tef">
+                                                            <pfx3:gls_email_avs_tef>
+                                                                <xsl:value-of select="pfx3:gls_email_avs_tef"/>
+                                                            </pfx3:gls_email_avs_tef>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:cod_rch_tef">
+                                                            <pfx3:cod_rch_tef>
+                                                                <xsl:value-of select="pfx3:cod_rch_tef"/>
+                                                            </pfx3:cod_rch_tef>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:cod_tpo_doc_abn">
+                                                            <pfx3:cod_tpo_doc_abn>
+                                                                <xsl:value-of select="pfx3:cod_tpo_doc_abn"/>
+                                                            </pfx3:cod_tpo_doc_abn>
+                                                        </xsl:if>
+                                                        <xsl:if test="pfx3:flg_slt_otp">
+                                                            <pfx3:flg_slt_otp>
+                                                                <xsl:value-of select="pfx3:flg_slt_otp"/>
+                                                            </pfx3:flg_slt_otp>
+                                                        </xsl:if>
+                                                    </pfx3:Record1>
+                                                </xsl:for-each>
+                                            </pfx3:ResultSet1>
+                                        </xsl:for-each>
+                                    </pfx3:Resultsets>
+                                </xsl:for-each>
+                            </pfx3:OUTPUT>
+                        </xsl:for-each>
+                    </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                </xsl:for-each>
+            </ns1:ActivityInputClass>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogEntrada">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>158</pd:x>
+        <pd:y>59</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="concat(&quot;Entrada sp_hob_cna_dts_tef_trm: &quot;, $Start/INPUT/String)"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogSalida">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>621</pd:x>
+        <pd:y>60</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="concat('Salida SP CL1SPSQLS-CONDatosTransFondosTrimestre: ', tib:render-xml($CL1SPSQLS-CONDatosTransFondosTrimestre))"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogError">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>626</pd:x>
+        <pd:y>274</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$Map-Data/pfx3:Response_sp_hob_cna_dts_tef_trm/ns2:INFO/ns2:Descripcion"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$Map-Data/pfx3:Response_sp_hob_cna_dts_tef_trm/ns2:INFO/ns2:Codigo"/>
+                </msgCode>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Generate Error">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>278</pd:x>
+        <pd:y>184</pd:y>
+        <config>
+            <faultName>Error</faultName>
+        </config>
+        <pd:inputBindings>
+            <pfx:ActivityInput>
+                <data>
+                    <Output>
+                        <String>
+                            <xsl:value-of select="tib:render-xml($_error_CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm)"/>
+                        </String>
+                    </Output>
+                </data>
+            </pfx:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Map Data">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>381</pd:x>
+        <pd:y>274</pd:y>
+        <config>
+            <element ref="pfx3:Response_sp_hob_cna_dts_tef_trm"/>
+        </config>
+        <pd:inputBindings>
+            <xsl:choose>
+                <xsl:when test="count($_error_Parse-JSON/ActivityErrors) > 0">
+                    <xsl:choose>
+                        <xsl:when test="count($_error_Parse-JSON/ActivityErrors/ns5:JSONParseException)>0">
+                            <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                                <ns2:INFO>
+                                    <ns2:Codigo>
+                                        <xsl:value-of select="$_error_Parse-JSON/ActivityErrors/ns5:JSONParseException/msgCode"/>
+                                    </ns2:Codigo>
+                                    <ns2:Descripcion>
+                                        <xsl:value-of select="$_error_Parse-JSON/ActivityErrors/ns5:JSONParseException/msg"/>
+                                    </ns2:Descripcion>
+                                </ns2:INFO>
+                            </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                                <ns2:INFO>
+                                    <ns2:Codigo>
+                                        <xsl:value-of select="$_error_Parse-JSON/ActivityErrors/ns5:ValidationException/msgCode"/>
+                                    </ns2:Codigo>
+                                    <ns2:Descripcion>
+                                        <xsl:value-of select="$_error_Parse-JSON/ActivityErrors/ns5:ValidationException/msg"/>
+                                    </ns2:Descripcion>
+                                </ns2:INFO>
+                            </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="count($_error_CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm) > 0">
+                    <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                        <ns2:INFO>
+                            <ns2:Codigo>
+                                <xsl:value-of select="$_error_CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/ns2:INFO/ns2:Codigo"/>
+                            </ns2:Codigo>
+                            <ns2:Descripcion>
+                                <xsl:value-of select="$_error_CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/ns2:INFO/ns2:Descripcion"/>
+                            </ns2:Descripcion>
+                        </ns2:INFO>
+                        <pfx3:OUTPUT>
+                            <pfx3:Escalares>
+                                <xsl:if test="$_error_CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/pfx3:OUTPUT/pfx3:Escalares/pfx3:ReturnValue">
+                                    <pfx3:ReturnValue>
+                                        <xsl:value-of select="$_error_CL1SPSQLS-CONDatosTransFondosTrimestre/pfx3:Response_sp_hob_cna_dts_tef_trm/pfx3:OUTPUT/pfx3:Escalares/pfx3:ReturnValue"/>
+                                    </pfx3:ReturnValue>
+                                </xsl:if>
+                            </pfx3:Escalares>
+                        </pfx3:OUTPUT>
+                    </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                </xsl:when>
+                <xsl:when test="count($_error_Render-JSON) > 0">
+                    <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                        <ns2:INFO>
+                            <ns2:Codigo>
+                                <xsl:value-of select="$_error_Render-JSON/ns5:JSONRenderException/msgCode"/>
+                            </ns2:Codigo>
+                            <ns2:Descripcion>
+                                <xsl:value-of select="$_error_Render-JSON/ns5:JSONRenderException/msg"/>
+                            </ns2:Descripcion>
+                        </ns2:INFO>
+                    </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                </xsl:when>
+                <xsl:when test="count($_error_Generate-Error) > 0">
+                    <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                        <ns2:INFO>
+                            <ns2:Codigo>
+                                <xsl:value-of select="$_globalVariables/ns3:GlobalVariables/INFO/CodigoError"/>
+                            </ns2:Codigo>
+                            <ns2:Descripcion>
+                                <xsl:value-of select="$_error_Generate-Error/Output/String"/>
+                            </ns2:Descripcion>
+                        </ns2:INFO>
+                    </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pfx3:Response_sp_hob_cna_dts_tef_trm>
+                        <ns2:INFO>
+                            <ns2:Codigo>
+                                <xsl:value-of select="$_error/ns4:ErrorReport/MsgCode"/>
+                            </ns2:Codigo>
+                            <ns2:Descripcion>
+                                <xsl:value-of select="$_error/ns4:ErrorReport/StackTrace"/>
+                            </ns2:Descripcion>
+                        </ns2:INFO>
+                    </pfx3:Response_sp_hob_cna_dts_tef_trm>
+                </xsl:otherwise>
+            </xsl:choose>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="CL1SPSQLS-CONDatosTransFondosTrimestre">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>381</pd:x>
+        <pd:y>62</pd:y>
+        <config>
+            <processName>/Process/Main/StartProcess/CL1SPSQLS-CONDatosTransFondosTrimestre.process</processName>
+        </config>
+        <pd:inputBindings>
+            <pfx3:INPUT>
+                <pfx3:nro_doc_cgo>
+                    <xsl:value-of select="$Parse-JSON/ns1:ActivityOutputClass/pfx3:INPUT/pfx3:nro_doc_cgo"/>
+                </pfx3:nro_doc_cgo>
+                <pfx3:fch_des_trm>
+                    <xsl:value-of select="$Parse-JSON/ns1:ActivityOutputClass/pfx3:INPUT/pfx3:fch_des_trm"/>
+                </pfx3:fch_des_trm>
+                <pfx3:fch_has_trm>
+                    <xsl:value-of select="$Parse-JSON/ns1:ActivityOutputClass/pfx3:INPUT/pfx3:fch_has_trm"/>
+                </pfx3:fch_has_trm>
+            </pfx3:INPUT>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>LogEntrada</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogSalida</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>Map Data</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Map Data</pd:from>
+        <pd:to>Render-JSON-1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Render-JSON-1</pd:from>
+        <pd:to>LogError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogError</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogEntrada</pd:from>
+        <pd:to>Parse JSON</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Render JSON</pd:from>
+        <pd:to>LogSalida</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Parse JSON</pd:from>
+        <pd:to>CL1SPSQLS-CONDatosTransFondosTrimestre</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>CL1SPSQLS-CONDatosTransFondosTrimestre</pd:from>
+        <pd:to>Render JSON</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>CL1SPSQLS-CONDatosTransFondosTrimestre</pd:from>
+        <pd:to>Generate Error</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pfx="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:pfx2="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_SCC_CLI_UPD_OPX.xsd" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:pfx3="http://www.tibco.com/ns/no_namespace_schema_location/Resources/Schemas/Salida_PR_SCC_CLI_UPD_OPX.xsd" xmlns:pfx4="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" xmlns:ns2="http://itg.isban.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:ns1="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions" xmlns:ns4="http://www.tibco.com/pe/DeployedVarsType" xmlns:ns3="http://www.tibco.com/pe/EngineTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns5="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003">
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/ns/no_namespace_schema_location/Resources/Schemas/Salida_PR_SCC_CLI_UPD_OPX.xsd" schemaLocation="/Resources/Schemas/Salida_PR_SCC_CLI_UPD_OPX.xsd"/>
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_SCC_CLI_UPD_OPX.xsd" schemaLocation="/Resources/Schemas/PR_SCC_CLI_UPD_OPX.xsd"/>
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" schemaLocation="/Resources/Schemas/Error.xsd"/>
+    <pd:name>Process/Main/StartProcess/CL1SPORAC-ACTMailComexCliente.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx2:INPUT"/>
+    <pd:startX>40</pd:startX>
+    <pd:startY>60</pd:startY>
+    <pd:returnBindings>
+        <xsl:choose>
+            <xsl:when test="not(exists($_error/ns3:ErrorReport/MsgCode))">
+                <xsl:choose>
+                    <xsl:when test="$PR_SCC_CLI_UPD_OPX/resultSet/outputSet/COD_ERROR !=0">
+                        <pfx2:Response_PR_SCC_CLI_UPD_OPX>
+                            <ns5:INFO>
+                                <ns5:Codigo>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoError"/>
+                                </ns5:Codigo>
+                                <ns5:Descripcion>
+                                    <xsl:value-of select="if (empty($PR_SCC_CLI_UPD_OPX/resultSet/outputSet/MSG_ERROR))&#xA;then $_globalVariables/ns4:GlobalVariables/INFO/MensajeError&#xA;else $PR_SCC_CLI_UPD_OPX/resultSet/outputSet/MSG_ERROR"/>
+                                </ns5:Descripcion>
+                            </ns5:INFO>
+                        </pfx2:Response_PR_SCC_CLI_UPD_OPX>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <pfx2:Response_PR_SCC_CLI_UPD_OPX>
+                            <ns5:INFO>
+                                <ns5:Codigo>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoOk"/>
+                                </ns5:Codigo>
+                                <ns5:Descripcion>
+                                    <xsl:value-of select="if (empty($PR_SCC_CLI_UPD_OPX/resultSet/outputSet/MSG_ERROR))&#xA;then $_globalVariables/ns4:GlobalVariables/INFO/MensajeOk&#xA;else $PR_SCC_CLI_UPD_OPX/resultSet/outputSet/MSG_ERROR"/>
+                                </ns5:Descripcion>
+                            </ns5:INFO>
+                        </pfx2:Response_PR_SCC_CLI_UPD_OPX>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="$Catch/pfx2:Response_PR_SCC_CLI_UPD_OPX"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx2:Response_PR_SCC_CLI_UPD_OPX"/>
+    <pd:endX>487</pd:endX>
+    <pd:endY>60</pd:endY>
+    <pd:errorSchemas>
+        <Error ref="pfx2:Response_PR_SCC_CLI_UPD_OPX"/>
+    </pd:errorSchemas>
+    <pd:processVariables/>
+    <pd:targetNamespace>https://itg.santander.cl/AppStoreProcedure3/Process/Main/StartProcess/CL1SPORAC-ACTMailComexCliente</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>600</pd:x>
+        <pd:y>60</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <fault>localname=Response_PR_SCC_CLI_UPD_OPX namespace=https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_SCC_CLI_UPD_OPX.xsd</fault>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Generate Error">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>486</pd:x>
+        <pd:y>178</pd:y>
+        <config>
+            <faultName>Error</faultName>
+        </config>
+        <pd:inputBindings>
+            <pfx:ActivityInput>
+                <data>
+                    <pfx2:Response_PR_SCC_CLI_UPD_OPX>
+                        <ns5:INFO>
+                            <ns5:Codigo>
+                                <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoError"/>
+                            </ns5:Codigo>
+                            <ns5:Descripcion>
+                                <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                            </ns5:Descripcion>
+                        </ns5:INFO>
+                    </pfx2:Response_PR_SCC_CLI_UPD_OPX>
+                </data>
+            </pfx:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogEntrada">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>122</pd:x>
+        <pd:y>60</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="tib:render-xml($Start/pfx2:INPUT)"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogError">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>365</pd:x>
+        <pd:y>177</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Mensaje"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                </msgCode>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogSalida">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>366</pd:x>
+        <pd:y>60</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="concat('Salida PR_SCC_CLI_UPD_OPX : ',tib:render-xml($PR_SCC_CLI_UPD_OPX/resultSet))"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="MapError">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>251</pd:x>
+        <pd:y>176</pd:y>
+        <config>
+            <element ref="pfx4:Error"/>
+        </config>
+        <pd:inputBindings>
+            <xsl:choose>
+                <xsl:when test="count($_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCDriverLoadingException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCDriverLoadingException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCDriverLoadingException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCConnectionNotFoundException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCConnectionNotFoundException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCConnectionNotFoundException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al intentar acceder a Base de datos&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:InvalidTimeZoneException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:InvalidTimeZoneException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:InvalidTimeZoneException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCSQLException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCSQLException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCSQLException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'Ha ocurrido una excepción.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:JDBCTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:LoginTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:LoginTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PR_SCC_CLI_UPD_OPX/ActivityErrors/ns1:LoginTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/MsgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/StackTrace"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:otherwise>
+            </xsl:choose>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="PR_SCC_CLI_UPD_OPX">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>251</pd:x>
+        <pd:y>58</pd:y>
+        <config>
+            <timeout>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/TimeOut%%</timeout>
+            <maxRows>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/MaxRows%%</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Resources/Connections/ORACLE/COMEX.sharedjdbc</jdbcSharedConfig>
+            <ProcedureName>PR_SCC_CLI_UPD_OPX</ProcedureName>
+            <useSchema>false</useSchema>
+            <commit>false</commit>
+            <schema>DBO_SCC</schema>
+            <catalog>PCK_OPG_GNI</catalog>
+            <oraObjects/>
+            <oraTables/>
+            <parameterTypes>
+                <parameter>
+                    <colName>PRM_RUT_CLI</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>PRM_EML</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>PRM_EML2</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>COD_ERROR</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>MSG_ERROR</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+            </parameterTypes>
+        </config>
+        <pd:inputBindings>
+            <inputs>
+                <inputSet>
+                    <PRM_RUT_CLI>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:PRM_RUT_CLI"/>
+                    </PRM_RUT_CLI>
+                    <PRM_EML>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:PRM_EML"/>
+                    </PRM_EML>
+                    <PRM_EML2>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:PRM_EML2"/>
+                    </PRM_EML2>
+                </inputSet>
+            </inputs>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>LogEntrada</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogEntrada</pd:from>
+        <pd:to>PR_SCC_CLI_UPD_OPX</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>PR_SCC_CLI_UPD_OPX</pd:from>
+        <pd:to>LogSalida</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogSalida</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>PR_SCC_CLI_UPD_OPX</pd:from>
+        <pd:to>MapError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>MapError</pd:from>
+        <pd:to>LogError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogError</pd:from>
+        <pd:to>Generate Error</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

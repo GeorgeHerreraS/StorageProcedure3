@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:ns2="http://itg.isban.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns1="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns4="http://www.tibco.com/pe/DeployedVarsType" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:ns3="http://www.tibco.com/pe/EngineTypes" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:pfx4="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" xmlns:pfx3="http://www.tibco.com/ns/no_namespace_schema_location/Resources/Schemas/Salida_PRTF_FM_DIAS_RETENCION.xsd" xmlns:pfx2="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PRTF_FM_DIAS_RETENCION.xsd" xmlns:ns5="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:pfx="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/ns/no_namespace_schema_location/Resources/Schemas/Salida_PRTF_FM_DIAS_RETENCION.xsd" schemaLocation="/Resources/Schemas/Salida_PRTF_FM_DIAS_RETENCION.xsd"/>
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PRTF_FM_DIAS_RETENCION.xsd" schemaLocation="/Resources/Schemas/PRTF_FM_DIAS_RETENCION.xsd"/>
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" schemaLocation="/Resources/Schemas/Error.xsd"/>
+    <pd:name>Process/Main/StartProcess/CL1SPSQLS_CONRetencionOperacion.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx2:INPUT"/>
+    <pd:startX>40</pd:startX>
+    <pd:startY>56</pd:startY>
+    <pd:returnBindings>
+        <xsl:choose>
+            <xsl:when test="not(exists($_error/ns3:ErrorReport/MsgCode))">
+                <xsl:choose>
+                    <xsl:when test="$PRTF_FM_DIAS_RETENCION/resultSet/outputSet/RETURN_VALUE!=0">
+                        <pfx2:Response_PRTF_FM_DIAS_RETENCION>
+                            <ns5:INFO>
+                                <ns5:Codigo>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoError"/>
+                                </ns5:Codigo>
+                                <ns5:Descripcion>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MensajeError"/>
+                                </ns5:Descripcion>
+                            </ns5:INFO>
+                            <pfx2:OUTPUT>
+                                <pfx2:Escalares>
+                                    <xsl:if test="$Parse-XML/Resultsets/ResultSet1/Record1[1]/OutputColumn1">
+                                        <pfx2:ReturnValue>
+                                            <xsl:value-of select="$Parse-XML/Resultsets/ResultSet1/Record1[1]/OutputColumn1"/>
+                                        </pfx2:ReturnValue>
+                                    </xsl:if>
+                                </pfx2:Escalares>
+                                <xsl:for-each select="$Parse-XML/Resultsets/ResultSet1/Record1">
+                                    <pfx2:Record1>
+                                        <xsl:if test="OutputColumn1">
+                                            <pfx2:OutputColumn1>
+                                                <xsl:value-of select="OutputColumn1"/>
+                                            </pfx2:OutputColumn1>
+                                        </xsl:if>
+                                    </pfx2:Record1>
+                                </xsl:for-each>
+                            </pfx2:OUTPUT>
+                        </pfx2:Response_PRTF_FM_DIAS_RETENCION>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <pfx2:Response_PRTF_FM_DIAS_RETENCION>
+                            <ns5:INFO>
+                                <ns5:Codigo>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoOk"/>
+                                </ns5:Codigo>
+                                <ns5:Descripcion>
+                                    <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MensajeOk"/>
+                                </ns5:Descripcion>
+                            </ns5:INFO>
+                            <pfx2:OUTPUT>
+                                <pfx2:Escalares>
+                                    <xsl:if test="$Parse-XML/Resultsets/ResultSet1/Record1[1]/OutputColumn1">
+                                        <pfx2:ReturnValue>
+                                            <xsl:value-of select="$Parse-XML/Resultsets/ResultSet1/Record1[1]/OutputColumn1"/>
+                                        </pfx2:ReturnValue>
+                                    </xsl:if>
+                                </pfx2:Escalares>
+                                <xsl:for-each select="$Parse-XML/Resultsets/ResultSet1/Record1">
+                                    <pfx2:Record1>
+                                        <xsl:if test="OutputColumn1">
+                                            <pfx2:OutputColumn1>
+                                                <xsl:value-of select="OutputColumn1"/>
+                                            </pfx2:OutputColumn1>
+                                        </xsl:if>
+                                    </pfx2:Record1>
+                                </xsl:for-each>
+                            </pfx2:OUTPUT>
+                        </pfx2:Response_PRTF_FM_DIAS_RETENCION>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx2:Response_PRTF_FM_DIAS_RETENCION>
+                    <ns5:INFO>
+                        <ns5:Codigo>
+                            <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                        </ns5:Codigo>
+                        <ns5:Descripcion>
+                            <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                        </ns5:Descripcion>
+                    </ns5:INFO>
+                </pfx2:Response_PRTF_FM_DIAS_RETENCION>
+            </xsl:otherwise>
+        </xsl:choose>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx2:Response_PRTF_FM_DIAS_RETENCION"/>
+    <pd:endX>561</pd:endX>
+    <pd:endY>56</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>https://itg.santander.cl/AppStoreProcedure3/Process/Main/StartProcess/CL1SPSQLS_CONRetencionOperacion</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>684</pd:x>
+        <pd:y>56</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <fault>localname=JDBCSQLException namespace=http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions</fault>
+            <catchAll>true</catchAll>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Generate Error">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>460</pd:x>
+        <pd:y>173</pd:y>
+        <config>
+            <faultName/>
+        </config>
+        <pd:inputBindings>
+            <pfx:ActivityInput>
+                <message>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                </message>
+                <messageCode>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                </messageCode>
+            </pfx:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogEntrada">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>122</pd:x>
+        <pd:y>56</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="tib:render-xml($Start/pfx2:INPUT)"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogError">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>333</pd:x>
+        <pd:y>173</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Mensaje"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                </msgCode>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogSalida">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>449</pd:x>
+        <pd:y>56</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="concat('Salida PRTF_FM_DIAS_RETENCION : ',tib:render-xml($PRTF_FM_DIAS_RETENCION/resultSet/outputSet),tib:render-xml($Parse-XML/Resultsets))"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="MapError">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>238</pd:x>
+        <pd:y>173</pd:y>
+        <config>
+            <element ref="pfx4:Error"/>
+        </config>
+        <pd:inputBindings>
+            <xsl:choose>
+                <xsl:when test="count($_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCDriverLoadingException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCDriverLoadingException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCDriverLoadingException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCConnectionNotFoundException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCConnectionNotFoundException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCConnectionNotFoundException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al intentar acceder a Base de datos&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:InvalidTimeZoneException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:InvalidTimeZoneException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:InvalidTimeZoneException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCSQLException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCSQLException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCSQLException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'Ha ocurrido una excepción.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:JDBCTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:LoginTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:LoginTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_PRTF_FM_DIAS_RETENCION/ActivityErrors/ns1:LoginTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/MsgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/StackTrace"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:otherwise>
+            </xsl:choose>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Parse XML">
+        <pd:type>com.tibco.plugin.xml.XMLParseActivity</pd:type>
+        <pd:resourceType>ae.activities.XMLParseActivity</pd:resourceType>
+        <pd:x>345</pd:x>
+        <pd:y>56</pd:y>
+        <config>
+            <inputStyle>text</inputStyle>
+            <xsdVersion>default</xsdVersion>
+            <validateOutput>true</validateOutput>
+            <term ref="pfx3:Resultsets"/>
+        </config>
+        <pd:inputBindings>
+            <xmlString>
+                <xsl:value-of select="$PRTF_FM_DIAS_RETENCION/resultSet/UnresolvedResultsets"/>
+            </xmlString>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="PRTF_FM_DIAS_RETENCION">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>237</pd:x>
+        <pd:y>56</pd:y>
+        <config>
+            <timeout>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/TimeOut%%</timeout>
+            <maxRows>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/MaxRows%%</maxRows>
+            <emptyStrAsNil>true</emptyStrAsNil>
+            <jdbcSharedConfig>/Resources/Connections/MSSQL/FMutuos.sharedjdbc</jdbcSharedConfig>
+            <ProcedureName>PRTF_FM_DIAS_RETENCION;1</ProcedureName>
+            <parameterTypes>
+                <parameter>
+                    <colName>@RETURN_VALUE</colName>
+                    <colType>5</colType>
+                    <dataType>4</dataType>
+                    <typeName>int</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@SOLICITUD</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>char</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@Fondo</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>char</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@clave_ejec</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>char</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@cod_sucur</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>char</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@coordinador</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>char</typeName>
+                </parameter>
+                <parameter>
+                    <colName>@canal</colName>
+                    <colType>1</colType>
+                    <dataType>1</dataType>
+                    <typeName>char</typeName>
+                </parameter>
+            </parameterTypes>
+            <useSchema>true</useSchema>
+            <commit>false</commit>
+        </config>
+        <pd:inputBindings>
+            <inputs>
+                <inputSet>
+                    <SOLICITUD>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:Solicitud"/>
+                    </SOLICITUD>
+                    <Fondo>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:Fondo"/>
+                    </Fondo>
+                    <clave_ejec>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:ClaveEjec"/>
+                    </clave_ejec>
+                    <cod_sucur>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:CodSucur"/>
+                    </cod_sucur>
+                    <coordinador>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:Coordinador"/>
+                    </coordinador>
+                    <canal>
+                        <xsl:value-of select="$Start/pfx2:INPUT/pfx2:Canal"/>
+                    </canal>
+                </inputSet>
+            </inputs>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>LogEntrada</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogEntrada</pd:from>
+        <pd:to>PRTF_FM_DIAS_RETENCION</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>PRTF_FM_DIAS_RETENCION</pd:from>
+        <pd:to>Parse XML</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogSalida</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Parse XML</pd:from>
+        <pd:to>LogSalida</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>PRTF_FM_DIAS_RETENCION</pd:from>
+        <pd:to>MapError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>MapError</pd:from>
+        <pd:to>LogError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogError</pd:from>
+        <pd:to>Generate Error</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

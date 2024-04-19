@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pfx="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:pfx2="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_IDI_LST_TPO_DOC_CAT.xsd" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:pfx4="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" xmlns:pfx5="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PGTKX001.xsd" xmlns:ns2="http://itg.isban.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:ns1="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions" xmlns:ns4="http://www.tibco.com/pe/DeployedVarsType" xmlns:ns3="http://www.tibco.com/pe/EngineTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns5="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003">
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/Error.xsd" schemaLocation="/Resources/Schemas/Error.xsd"/>
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_IDI_LST_TPO_DOC_CAT.xsd" schemaLocation="/Resources/Schemas/SP_IDI_LST_TPO_DOC_CAT.xsd"/>
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PGTKX001.xsd" schemaLocation="/Resources/Schemas/PGTKX001.xsd"/>
+    <pd:name>Process/Main/StartProcess/CL1SPORAC-CONInfoContratoMarcoWeb.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx5:INPUT"/>
+    <pd:startX>40</pd:startX>
+    <pd:startY>56</pd:startY>
+    <pd:returnBindings>
+        <xsl:choose>
+            <xsl:when test="not(exists($_error/ns3:ErrorReport/MsgCode))">
+                <pfx5:Response_PGTKX001>
+                    <ns5:INFO>
+                        <ns5:Codigo>
+                            <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoOk"/>
+                        </ns5:Codigo>
+                        <ns5:Descripcion>
+                            <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MensajeOk"/>
+                        </ns5:Descripcion>
+                    </ns5:INFO>
+                    <pfx5:OUTPUT>
+                        <pfx5:Escalares>
+                            <xsl:if test="not(($P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_NOMBRE_EMPRESA/@xsi:nil=(&quot;true&quot;)) or ($P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_NOMBRE_EMPRESA/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx5:P_NOMBRE_EMPRESA>
+                                    <xsl:value-of select="$P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_NOMBRE_EMPRESA"/>
+                                </pfx5:P_NOMBRE_EMPRESA>
+                            </xsl:if>
+                            <xsl:if test="not(($P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_EMPRESA_RUT/@xsi:nil=(&quot;true&quot;)) or ($P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_EMPRESA_RUT/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx5:P_EMPRESA_RUT>
+                                    <xsl:value-of select="$P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_EMPRESA_RUT"/>
+                                </pfx5:P_EMPRESA_RUT>
+                            </xsl:if>
+                            <xsl:if test="not(($P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_RESPONSABLE/@xsi:nil=(&quot;true&quot;)) or ($P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_RESPONSABLE/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx5:P_RESPONSABLE>
+                                    <xsl:value-of select="$P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_RESPONSABLE"/>
+                                </pfx5:P_RESPONSABLE>
+                            </xsl:if>
+                            <xsl:if test="not(($P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_WARNING/@xsi:nil=(&quot;true&quot;)) or ($P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_WARNING/@xsi:nil=(&quot;1&quot;)))">
+                                <pfx5:P_WARNING>
+                                    <xsl:value-of select="$P_INFOCONTRATOMARCOWEB/resultSet/outputSet/P_WARNING/@xsi:nil"/>
+                                </pfx5:P_WARNING>
+                            </xsl:if>
+                        </pfx5:Escalares>
+                    </pfx5:OUTPUT>
+                </pfx5:Response_PGTKX001>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx5:Response_PGTKX001>
+                    <ns5:INFO>
+                        <ns5:Codigo>
+                            <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                        </ns5:Codigo>
+                        <ns5:Descripcion>
+                            <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                        </ns5:Descripcion>
+                    </ns5:INFO>
+                </pfx5:Response_PGTKX001>
+            </xsl:otherwise>
+        </xsl:choose>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx5:Response_PGTKX001"/>
+    <pd:endX>505</pd:endX>
+    <pd:endY>63</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>https://itg.santander.cl/AppStoreProcedure3/Process/Main/StartProcess/CL1SPORAC-CONInfoContratoMarcoWeb</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>606</pd:x>
+        <pd:y>63</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <fault>localname=JDBCSQLException namespace=http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions</fault>
+            <catchAll>true</catchAll>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Generate Error">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>492</pd:x>
+        <pd:y>190</pd:y>
+        <config>
+            <faultName/>
+        </config>
+        <pd:inputBindings>
+            <pfx:ActivityInput>
+                <message>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:MsgUsuario"/>
+                </message>
+                <messageCode>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                </messageCode>
+            </pfx:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogEntrada">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>132</pd:x>
+        <pd:y>57</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="tib:render-xml($Start/pfx5:INPUT)"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogError">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>379</pd:x>
+        <pd:y>188</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Mensaje"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$MapError/pfx4:Error/pfx4:Codigo"/>
+                </msgCode>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogSalida">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>396</pd:x>
+        <pd:y>61</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="concat('Salida P_INFOCONTRATOMARCOWEB : ',tib:render-xml($P_INFOCONTRATOMARCOWEB/resultSet/outputSet))"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="MapError">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>254</pd:x>
+        <pd:y>186</pd:y>
+        <config>
+            <element ref="pfx4:Error"/>
+        </config>
+        <pd:inputBindings>
+            <xsl:choose>
+                <xsl:when test="count($_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCDriverLoadingException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCDriverLoadingException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCDriverLoadingException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCConnectionNotFoundException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCConnectionNotFoundException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCConnectionNotFoundException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al intentar acceder a Base de datos&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:InvalidTimeZoneException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:InvalidTimeZoneException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:InvalidTimeZoneException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="&quot;Error al Consultar en Base de datos, favor intentar nuevamente&quot;"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCSQLException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCSQLException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCSQLException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'Ha ocurrido una excepción.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:JDBCTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:when test="count($_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:LoginTimedOutException)>0">
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:LoginTimedOutException/msgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error_P_INFOCONTRATOMARCOWEB/ActivityErrors/ns1:LoginTimedOutException/msg"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pfx4:Error>
+                        <pfx4:Codigo>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/MsgCode"/>
+                        </pfx4:Codigo>
+                        <pfx4:Mensaje>
+                            <xsl:value-of select="$_error/ns3:ErrorReport/StackTrace"/>
+                        </pfx4:Mensaje>
+                        <pfx4:MsgUsuario>
+                            <xsl:value-of select="'No se recibió respuesta del servidor, intente más tarde.'"/>
+                        </pfx4:MsgUsuario>
+                    </pfx4:Error>
+                </xsl:otherwise>
+            </xsl:choose>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="P_INFOCONTRATOMARCOWEB">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>252</pd:x>
+        <pd:y>59</pd:y>
+        <config>
+            <timeout>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/TimeOut%%</timeout>
+            <maxRows>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/MaxRows%%</maxRows>
+            <emptyStrAsNil>true</emptyStrAsNil>
+            <jdbcSharedConfig>/Resources/Connections/ORACLE/MESA.sharedjdbc</jdbcSharedConfig>
+            <schema>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/Schema%%</schema>
+            <catalog>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/Package%%</catalog>
+            <ProcedureName>P_INFOCONTRATOMARCOWEB</ProcedureName>
+            <useSchema>true</useSchema>
+            <parameterTypes>
+                <parameter>
+                    <colName>P_NOMBRE_EMPRESA</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_EMPRESA_RUT</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_RESPONSABLE</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_WARNING</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+            </parameterTypes>
+        </config>
+        <pd:inputBindings>
+            <inputs/>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>LogEntrada</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogSalida</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>MapError</pd:from>
+        <pd:to>LogError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogError</pd:from>
+        <pd:to>Generate Error</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogEntrada</pd:from>
+        <pd:to>P_INFOCONTRATOMARCOWEB</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>P_INFOCONTRATOMARCOWEB</pd:from>
+        <pd:to>MapError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>P_INFOCONTRATOMARCOWEB</pd:from>
+        <pd:to>LogSalida</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>
