@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Repository:repository xmlns:Repository="http://www.tibco.com/xmlns/repo/types/2002">
+    <enterpriseArchive>
+        <sharedArchive name="Shared Archive">
+            <resourceType>shared.archive.resource</resourceType>
+            <authorProperty>jmontal</authorProperty>
+            <sharedResources/>
+            <sharedFiles/>
+            <sharedJarFiles/>
+        </sharedArchive>
+        <processArchive name="AppStorageProcedure3">
+            <resourceType>process.archive.resource</resourceType>
+            <authorProperty>Integración</authorProperty>
+            <processProperty>/Services/wsCL1SPORAC-CONCertificadoCreditoPreAprobado.serviceagent,/Services/wsCL1SPSQLS_CONRetencionOperacion.serviceagent,/Services/wsCL1SPORAC-ACTMailComexCliente.serviceagent,/Services/wsCL1SPORAC-CONListaTipoDocCategoria.serviceagent,/Services/wsCL1SPORAC-ALTRegistroBuzon.serviceagent,/Services/wsCL1SPORAC-CONListaCategoriaDoc.serviceagent,/Services/wsCL1SPORAC-CONListaDocumento.serviceagent,/Services/wsCL1SPORAC-CONInfoContratoMarcoWeb.serviceagent,/Services/wsCL1StorageProcedure3Https.process,/Services/wsCL1SPORAC-CONDocumentosGenerales.serviceagent,/Services/wsCL1SPORAC-CONDocumentosLegales.serviceagent,/Services/wsCL1SPORAC-CONTipoContrato.serviceagent,/Services/wsCL1SPORAC-CONTipoDocumentos.serviceagent,/Services/wsCL1SPSQLS-CONFirmaTitularApoderados.serviceagent</processProperty>
+        </processArchive>
+        <versionProperty>1.5.9</versionProperty>
+        <authorProperty>jfarias</authorProperty>
+        <addServiceSettableGvars>true</addServiceSettableGvars>
+        <name>AppStorageProcedure3</name>
+        <designer>
+            <lockedProperties/>
+            <fixedChildren/>
+            <resourceDescriptions/>
+        </designer>
+        <fileLocationProperty>C:\Users\n727782\Desktop\2019\ear\AppStorageProcedure3.ear</fileLocationProperty>
+        <description>&lt;b&gt;V1.5.9: Se cambia el string de conexion del conector a BD FMUTUOS (J.F)&lt;/b&gt;
+&lt;b&gt;V1.5.8: Se cambia el string de conexion del conector a BD HOB (A.G)&lt;/b&gt;
+&lt;br&gt;V1.5.7: Se agregan los servicios: wsCL1SPORAC-CONTipoDocumentos, wsCL1SPORAC-CONDocumentosGenerales, wsCL1SPORAC-CONDocumentosLegales, wsCL1SPSQLS-CONFirmaTitularApoderados y wsCL1SPORAC-CONTipoContrato y ajustan variables globales.
+&lt;br&gt;V1.5.6: Se modifica 'generate error' del servicio wsCL1SPSQLS-CONDatosCampCliAsociado y wsCL1SPSQLS-ALTCancelarVisualCampCli tenian salidas cambiadas msg y codigo. Se agrega servicio wsCL1SPSQLS-CONDatosTransFondosTrimestre a instancia REST.
+&lt;br&gt;V1.5.5: Se modifica salida del servicio wsCL1SPSQLS_CONRetencionOperacion copiando el dato del resultsets al return value de escalares. CL1SPSQLS_CONRetencionOperacion
+&lt;br&gt;V1.5.4: Se agrega servicio wsCL1SPORAC-CONInfoContratoMarcoWeb. Se crea la instancia REST para los siguientes servicios wsCL1SPSQLS-ALTCancelarVisualCampCli y wsCL1SPSQLS-CONDatosCampCliAsociado.
+&lt;br&gt;V1.5.3: Se agregan servicios wsCL1SPORAC-CONListaDocumento y wsCL1SPORAC-CONListaCategoriaDoc.
+&lt;br&gt;V1.5.2.1: Se modifica el nombre del  servicio wsCL1SPORAC-CONRegistroBuzon a wsCL1SPORAC-ALTRegistroBuzon.
+&lt;br&gt;V1.5.2: Se agrega servicio wsCL1SPORAC-CONRegistroBuzon 
+&lt;br&gt;V1.5.1: Se realiza ajuste en la salida del servicio wsCL1SPSQLS_CONRetencionOperacion
+&lt;br&gt;V1.5: Se Modifica entrada del servicio wsCL1SPORAC-CONListaTipoDocCategoria .
+&lt;br&gt;V1.4: Se agrega servicio wsCL1SPORAC-CONListaTipoDocCategoria y se modifica salida del servicio wsCL1SPSQLS_CONRetencionOperacion por problemas de incompatibilidad con INVOKER
+&lt;br&gt;V1.3.1: Se mueve conexion DB Comex a categoria ORACLE.
+&lt;br&gt;V1.3: Se modifica servicio wsCL1SPSQLS_CONRetencionOperacion eliminando fault de operación, ademas se incluye en EAR Servicio wsCL1SPORAC-CONCertificadoCreditoPreAprobado.
+&lt;br&gt;V1.2: Se transforma a http servicio wsCL1SPSQLS-CONRetencionOperacion.
+&lt;br&gt;V1.1: Se agrega servicio wsCL1SPSQLS-ACTMailComexCliente.
+&lt;br&gt;V1.0: Primera Version de AppStoreProcedure3. Se agrega servicio wsCL1SPSQLS-CONRetencionOperacion.</description>
+    </enterpriseArchive>
+</Repository:repository>

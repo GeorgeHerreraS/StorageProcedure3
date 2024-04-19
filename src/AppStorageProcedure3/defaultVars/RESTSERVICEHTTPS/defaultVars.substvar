@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>ServiceName</name>
+			<value>AppStorageProcedure3</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1538075901040</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>UriCancelarVisualCampCli</name>
+			<value>Rest/AppStorageProcedure3/wsCL1SPSQLS-ALTCancelarVisualCampCli</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1538075965810</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>UriDatosCampCliAsociado</name>
+			<value>Rest/AppStorageProcedure3/wsCL1SPSQLS-CONDatosCampCliAsociado</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1538080061140</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>UriDatosTransFondosTrimestre</name>
+			<value>Rest/AppStorageProcedure3/wsCL1SPSQLS-CONDatosTransFondosTrimestre</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1538505890309</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>UriEndpoint</name>
+			<value>https://localhost</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1538075901067</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>
