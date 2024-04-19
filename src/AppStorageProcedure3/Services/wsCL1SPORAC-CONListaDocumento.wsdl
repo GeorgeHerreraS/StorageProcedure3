@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://itg.santander.cl/AppStoreProcedure3/Services/wsCL1SPORAC-CONListaDocumento" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pfx0="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_IDI_LST_DOC.xsd" targetNamespace="https://itg.santander.cl/AppStoreProcedure3/Services/wsCL1SPORAC-CONListaDocumento">
+    <import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_IDI_LST_DOC.xsd" location="../Resources/Schemas/SP_IDI_LST_DOC.xsd"/>
+    <message name="INPUT">
+        <part element="pfx0:INPUT" name="parameters"/>
+    </message>
+    <message name="OUTPUT">
+        <part element="pfx0:Response_SP_IDI_LST_DOC" name="parameters"/>
+    </message>
+    <portType name="portType">
+        <operation name="getListaDocumento">
+            <input message="tns:INPUT"/>
+            <output message="tns:OUTPUT"/>
+        </operation>
+    </portType>
+</definitions>

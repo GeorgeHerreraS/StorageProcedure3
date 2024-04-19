@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceResource xmlns:wsdl="https://itg.santander.cl/CL/AppStorageProcedure3/1SPORAC/Process/wsCL1SPORAC-CONCertificadoCreditoPreAprobado">
+    <ns0:import xmlns:ns0="http://schemas.xmlsoap.org/wsdl/" namespace="https://itg.santander.cl/CL/AppStorageProcedure3/1SPORAC/Process/wsCL1SPORAC-CONCertificadoCreditoPreAprobado" location="/Services/wsCL1SPORAC-CONCertificadoCreditoPreAprobado.wsdl"/>
+    <config>
+        <class>com.tibco.bw.service.serviceAgent.ServiceServiceAgent</class>
+        <name>wsCL1SPORAC-CONCertificadoCreditoPreAprobado</name>
+        <resourceType>service.definition</resourceType>
+        <implType>bw</implType>
+        <groups>
+            <row isDefault="true" groupName="Default"/>
+        </groups>
+        <serviceChange>Mon Aug 20 13:37:38 CLT 2018</serviceChange>
+        <interfaceImpl>
+            <tab>
+                <tabName>portType</tabName>
+                <tabType>bw</tabType>
+                <config>
+                    <wsdlDetail location="/Services/wsCL1SPORAC-CONCertificadoCreditoPreAprobado.wsdl" portType="portType" ns="https://itg.santander.cl/CL/AppStorageProcedure3/1SPORAC/Process/wsCL1SPORAC-CONCertificadoCreditoPreAprobado"/>
+                    <detail>
+                        <tab>
+                            <tabName>service.definition.impl.tab.label</tabName>
+                            <tabType>impl</tabType>
+                            <config>
+                                <operations>
+                                    <row opName="getCONCertificadoCreditoPreAprobado" opImpl="/Services/wsCL1SPORAC-CONCertificadoCreditoPreAprobado.process"/>
+                                </operations>
+                            </config>
+                        </tab>
+                        <tab>
+                            <tabName>service.definition.ep.tab.label</tabName>
+                            <tabType>ep</tabType>
+                            <config>
+                                <epBindings>
+                                    <row epName="wsCL1SPORAC-CONCertificadoCreditoPreAprobado" epType="soap">
+                                        <config>
+                                            <epDetail>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.transport.tab.label</tabName>
+                                                    <tabType>transport</tabType>
+                                                    <config>
+                                                        <sharedChannel>/Resources/Connections/HTTPS/HTTPS.sharedhttp</sharedChannel>
+                                                        <transport>
+                                                            <config>
+                                                                <useBasicAuthentication>false</useBasicAuthentication>
+                                                                <httpURI>/Services/AppStorageProcedure3/wsCL1SPORAC-CONCertificadoCreditoPreAprobado</httpURI>
+                                                            </config>
+                                                        </transport>
+                                                    </config>
+                                                </tab>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.details.tab.label</tabName>
+                                                    <tabType>details</tabType>
+                                                    <config>
+                                                        <operationStyle>document</operationStyle>
+                                                        <soapVersion>SOAP 1.1</soapVersion>
+                                                        <soap>
+                                                            <operation name="getCONCertificadoCreditoPreAprobado">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>getCONCertificadoCreditoPreAprobado</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                        </soap>
+                                                    </config>
+                                                </tab>
+                                            </epDetail>
+                                        </config>
+                                    </row>
+                                </epBindings>
+                            </config>
+                        </tab>
+                    </detail>
+                </config>
+            </tab>
+        </interfaceImpl>
+        <wsdl namespace="https://itg.santander.cl/CL/AppStorageProcedure3/1SPORAC/WSDL/wsCL1SPORAC-CONCertificadoCreditoPreAprobado" embedWsdlComponents="true" embedSchemaComponents="true" embedJndiProperties="false"/>
+    </config>
+</serviceResource>

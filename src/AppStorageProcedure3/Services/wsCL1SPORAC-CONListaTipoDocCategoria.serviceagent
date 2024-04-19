@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceResource xmlns:wsdl="https://itg.santander.cl/AppStoreProcedure3/Services/wsCL1SPORAC-CONListaTipoDocCategoria">
+    <ns0:import xmlns:ns0="http://schemas.xmlsoap.org/wsdl/" namespace="https://itg.santander.cl/AppStoreProcedure3/Services/wsCL1SPORAC-CONListaTipoDocCategoria" location="/Services/wsCL1SPORAC-CONListaTipoDocCategoria.wsdl"/>
+    <config>
+        <class>com.tibco.bw.service.serviceAgent.ServiceServiceAgent</class>
+        <name>wsCL1SPORAC-CONListaTipoDocCategoria</name>
+        <resourceType>service.definition</resourceType>
+        <implType>bw</implType>
+        <groups>
+            <row isDefault="true" groupName="Default"/>
+        </groups>
+        <wsdl namespace="https://itg.santander.cl/AppStoreProcedure3/WSDL/wsCL1SPORAC-CONListaTipoDocCategoria" embedWsdlComponents="true" embedSchemaComponents="true" embedJndiProperties="false"/>
+        <serviceChange>Wed Sep 12 11:42:12 CLT 2018</serviceChange>
+        <interfaceImpl>
+            <tab>
+                <tabName>portType</tabName>
+                <tabType>bw</tabType>
+                <config>
+                    <wsdlDetail location="/Services/wsCL1SPORAC-CONListaTipoDocCategoria.wsdl" portType="portType" ns="https://itg.santander.cl/AppStoreProcedure3/Services/wsCL1SPORAC-CONListaTipoDocCategoria"/>
+                    <detail>
+                        <tab>
+                            <tabName>service.definition.impl.tab.label</tabName>
+                            <tabType>impl</tabType>
+                            <config>
+                                <operations>
+                                    <row opName="getListaTipoDocCategoria" opImpl="/Services/wsCL1SPORAC-CONListaTipoDocCategoria.process"/>
+                                </operations>
+                            </config>
+                        </tab>
+                        <tab>
+                            <tabName>service.definition.ep.tab.label</tabName>
+                            <tabType>ep</tabType>
+                            <config>
+                                <epBindings>
+                                    <row epName="wsCL1SPORAC-CONListaTipoDocCategoria" epType="soap">
+                                        <config>
+                                            <epDetail>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.transport.tab.label</tabName>
+                                                    <tabType>transport</tabType>
+                                                    <config>
+                                                        <sharedChannel>/Resources/Connections/HTTPS/HTTPS.sharedhttp</sharedChannel>
+                                                        <transport>
+                                                            <config>
+                                                                <useBasicAuthentication>false</useBasicAuthentication>
+                                                                <httpURI>/Services/AppStorageProcedure3/wsCL1SPORAC-CONListaTipoDocCategoria</httpURI>
+                                                            </config>
+                                                        </transport>
+                                                    </config>
+                                                </tab>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.details.tab.label</tabName>
+                                                    <tabType>details</tabType>
+                                                    <config>
+                                                        <operationStyle>document</operationStyle>
+                                                        <soapVersion>SOAP 1.1</soapVersion>
+                                                        <soap>
+                                                            <operation name="getListaTipoDocCategoria">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>getListaTipoDocCategoria</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                        </soap>
+                                                    </config>
+                                                </tab>
+                                            </epDetail>
+                                        </config>
+                                    </row>
+                                </epBindings>
+                            </config>
+                        </tab>
+                    </detail>
+                </config>
+            </tab>
+        </interfaceImpl>
+    </config>
+</serviceResource>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceResource xmlns:wsdl="https://itg.santander.cl/AppStoreProcedure3/Services/wsCL1SPORAC-CONDocumentosLegales">
+    <ns0:import xmlns:ns0="http://schemas.xmlsoap.org/wsdl/" namespace="https://itg.santander.cl/AppStoreProcedure3/Services/wsCL1SPORAC-CONDocumentosLegales" location="/Services/wsCL1SPORAC-CONDocumentosLegales.wsdl"/>
+    <config>
+        <class>com.tibco.bw.service.serviceAgent.ServiceServiceAgent</class>
+        <name>wsCL1SPORAC-CONDocumentosLegales</name>
+        <resourceType>service.definition</resourceType>
+        <implType>bw</implType>
+        <groups>
+            <row isDefault="true" groupName="Default"/>
+        </groups>
+        <serviceChange>Thu Oct 04 16:31:51 CLT 2018</serviceChange>
+        <interfaceImpl>
+            <tab>
+                <tabName>portType</tabName>
+                <tabType>bw</tabType>
+                <config>
+                    <wsdlDetail location="/Services/wsCL1SPORAC-CONDocumentosLegales.wsdl" portType="portType" ns="https://itg.santander.cl/AppStoreProcedure3/Services/wsCL1SPORAC-CONDocumentosLegales"/>
+                    <detail>
+                        <tab>
+                            <tabName>service.definition.impl.tab.label</tabName>
+                            <tabType>impl</tabType>
+                            <config>
+                                <operations>
+                                    <row opName="getDocumentosLegales" opImpl="/Services/wsCL1SPORAC-CONDocumentosLegales.process"/>
+                                </operations>
+                            </config>
+                        </tab>
+                        <tab>
+                            <tabName>service.definition.ep.tab.label</tabName>
+                            <tabType>ep</tabType>
+                            <config>
+                                <epBindings>
+                                    <row epName="wsCL1SPORAC-CONDocumentosLegales" epType="soap">
+                                        <config>
+                                            <epDetail>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.transport.tab.label</tabName>
+                                                    <tabType>transport</tabType>
+                                                    <config>
+                                                        <sharedChannel>/Resources/Connections/HTTPS/HTTPS.sharedhttp</sharedChannel>
+                                                        <transport>
+                                                            <config>
+                                                                <useBasicAuthentication>false</useBasicAuthentication>
+                                                                <httpURI>/Services/AppStorageProcedure3/wsCL1SPORAC-CONDocumentosLegales</httpURI>
+                                                            </config>
+                                                        </transport>
+                                                    </config>
+                                                </tab>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.details.tab.label</tabName>
+                                                    <tabType>details</tabType>
+                                                    <config>
+                                                        <operationStyle>document</operationStyle>
+                                                        <soapVersion>SOAP 1.1</soapVersion>
+                                                        <soap>
+                                                            <operation name="getDocumentosLegales">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>getDocumentosLegales</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                        </soap>
+                                                    </config>
+                                                </tab>
+                                            </epDetail>
+                                        </config>
+                                    </row>
+                                </epBindings>
+                            </config>
+                        </tab>
+                    </detail>
+                </config>
+            </tab>
+        </interfaceImpl>
+        <wsdl namespace="https://itg.santander.cl/AppStoreProcedure3/WSDL/wsCL1SPORAC-CONDocumentosLegales" embedWsdlComponents="true" embedSchemaComponents="true" embedJndiProperties="false"/>
+    </config>
+</serviceResource>
