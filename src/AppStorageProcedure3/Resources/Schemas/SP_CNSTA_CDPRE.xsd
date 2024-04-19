@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_CNSTA_CDPRE.xsd"
+	 xmlns:ns0="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd"
+	 targetNamespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_CNSTA_CDPRE.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" schemaLocation="INFO.xsd"/>
+	<xs:element name="INPUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NumDocPersona" type="xs:string"/>
+				<xs:element name="DV" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response_SP_CNSTA_CDPRE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns0:INFO"/>
+				<xs:element name="OUTPUT" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Escalares" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Warning" type="xs:string" minOccurs="0"/>
+										<xs:element name="NumCrvSlt" type="xs:string" minOccurs="0"/>
+										<xs:element name="IdfEstSlt" type="xs:string" minOccurs="0"/>
+										<xs:element name="ImpCdp" type="xs:string" minOccurs="0"/>
+										<xs:element name="FecApbCdt" type="xs:string" minOccurs="0"/>
+										<xs:element name="ObsCdt" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_HOB_CNA_DTS_CPN_CLI.xsd"
+	 xmlns:ns0="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd"
+	 targetNamespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PR_HOB_CNA_DTS_CPN_CLI.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" schemaLocation="INFO.xsd"/>
+	<xs:element name="INPUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="cod_cpn" type="xs:string"/>
+				<xs:element name="nro_doc_psn" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response_PR_HOB_CNA_DTS_CPN_CLI">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns0:INFO"/>
+				<xs:element name="OUTPUT" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Escalares" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ReturnValue" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Resulsets" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ResultSet1" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Record1" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="cod_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_tipo_vista_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nom_sigla_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nom_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="gls_tit_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="gls_det_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="fch_ico_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="fch_fin_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="can_vsn_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="can_vsn_tot_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nro_vnt_ancho_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nro_vnt_alto_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_vsn_nom_clt_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_vsn_det_clt_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_vsn_tlf_clt_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_vsn_cel_clt_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_vsn_hora_atncn_clt_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_env_email_clt_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nom_img_fondo_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nom_img_prpgn_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_env_ifm_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_estdo_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="gls_pth_cpn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nro_doc_psn" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_tpo_doc_psn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nro_tlf_clt" type="xs:string" minOccurs="0"/>
+																<xs:element name="nro_cel_clt" type="xs:string" minOccurs="0"/>
+																<xs:element name="gls_email_clt" type="xs:string" minOccurs="0"/>
+																<xs:element name="can_vista_cpn_clt" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_acp_cpn_clt" type="xs:string" minOccurs="0"/>
+																<xs:element name="gls_det" type="xs:string" minOccurs="0"/>
+																<xs:element name="vlr_det" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

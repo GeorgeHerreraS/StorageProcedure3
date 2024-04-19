@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BWSharedResource>
+    <name>Firmas</name>
+    <resourceType>ae.shared.JDBCSharedResource</resourceType>
+    <config>
+        <driver>%%CONNECTIONS/BBDD/MSSQL/DB_Firmas/Driver%%</driver>
+        <maxConnections>%%CONNECTIONS/BBDD/MSSQL/DB_Firmas/MaxConn%%</maxConnections>
+        <loginTimeout>%%CONNECTIONS/BBDD/MSSQL/DB_Firmas/LoginTimeOut%%</loginTimeout>
+        <connectionType>JDBC</connectionType>
+        <UseSharedJndiConfig>false</UseSharedJndiConfig>
+        <location>%%CONNECTIONS/BBDD/MSSQL/DB_Firmas/JDBCUrl%%</location>
+        <user>%%CONNECTIONS/BBDD/MSSQL/DB_Firmas/User%%</user>
+        <password>%%CONNECTIONS/BBDD/MSSQL/DB_Firmas/Pass%%</password>
+    </config>
+</BWSharedResource>

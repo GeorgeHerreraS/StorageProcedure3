@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BWSharedResource>
+    <name>Hob_Tef</name>
+    <resourceType>ae.shared.JDBCSharedResource</resourceType>
+    <config>
+        <driver>%%CONNECTIONS/BBDD/MSSQL/DB_Hob_Tef/Driver%%</driver>
+        <maxConnections>%%CONNECTIONS/BBDD/MSSQL/DB_Hob_Tef/MaxConn%%</maxConnections>
+        <loginTimeout>%%CONNECTIONS/BBDD/MSSQL/DB_Hob_Tef/LoginTimeOut%%</loginTimeout>
+        <connectionType>JDBC</connectionType>
+        <UseSharedJndiConfig>false</UseSharedJndiConfig>
+        <location>%%CONNECTIONS/BBDD/MSSQL/DB_Hob_Tef/JDBCUrl%%</location>
+        <user>%%CONNECTIONS/BBDD/MSSQL/DB_Hob_Tef/User%%</user>
+        <password>%%CONNECTIONS/BBDD/MSSQL/DB_Hob_Tef/Pass%%</password>
+    </config>
+</BWSharedResource>

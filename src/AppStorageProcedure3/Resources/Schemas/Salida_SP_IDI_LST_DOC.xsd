@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="Resultsets">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ResultSet1" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Record1" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="COD_DOC_FNT" type="xs:string" minOccurs="0"/>
+										<xs:element name="NUM_LLV_GID_DOC_FNT" type="xs:string" minOccurs="0"/>
+										<xs:element name="NOM_DOC_FNT" type="xs:string" minOccurs="0"/>
+										<xs:element name="TIT_DOC_FNT" type="xs:string" minOccurs="0"/>
+										<xs:element name="FEC_DOC_FNT" type="xs:string" minOccurs="0"/>
+										<xs:element name="FEC_CAD_DOC" type="xs:string" minOccurs="0"/>
+										<xs:element name="FEC_VLD_DOC" type="xs:string" minOccurs="0"/>
+										<xs:element name="TPO_ARC_DOC_FNT" type="xs:string" minOccurs="0"/>
+										<xs:element name="DSC_ALS_CNA" type="xs:string" minOccurs="0"/>
+										<xs:element name="FLG_TPO_SPL" type="xs:string" minOccurs="0"/>
+										<xs:element name="COD_TPO_DOC" type="xs:string" minOccurs="0"/>
+										<xs:element name="COD_ABV_TPD" type="xs:string" minOccurs="0"/>
+										<xs:element name="TNO_ARC_DOC_FNT" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

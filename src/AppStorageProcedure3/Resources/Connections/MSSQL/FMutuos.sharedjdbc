@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BWSharedResource>
+    <name>FMutuos</name>
+    <resourceType>ae.shared.JDBCSharedResource</resourceType>
+    <config>
+        <driver>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/Driver%%</driver>
+        <maxConnections>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/MaxConn%%</maxConnections>
+        <loginTimeout>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/LoginTimeOut%%</loginTimeout>
+        <connectionType>JDBC</connectionType>
+        <UseSharedJndiConfig>false</UseSharedJndiConfig>
+        <location>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/JDBCUrl%%</location>
+        <password>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/Pass%%</password>
+        <user>%%CONNECTIONS/BBDD/MSSQL/DB_FMutuos/User%%</user>
+    </config>
+</BWSharedResource>

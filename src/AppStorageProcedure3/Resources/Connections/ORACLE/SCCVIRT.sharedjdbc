@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BWSharedResource>
+    <name>SCCVIRT</name>
+    <resourceType>ae.shared.JDBCSharedResource</resourceType>
+    <config>
+        <driver>%%CONNECTIONS/BBDD/ORACLE/DB_SCCVIRT/Driver%%</driver>
+        <maxConnections>%%CONNECTIONS/BBDD/ORACLE/DB_SCCVIRT/MaxConn%%</maxConnections>
+        <loginTimeout>%%CONNECTIONS/BBDD/ORACLE/DB_SCCVIRT/TimeOut%%</loginTimeout>
+        <connectionType>JDBC</connectionType>
+        <UseSharedJndiConfig>false</UseSharedJndiConfig>
+        <location>%%CONNECTIONS/BBDD/ORACLE/DB_SCCVIRT/JDBCUrl%%</location>
+        <user>%%CONNECTIONS/BBDD/ORACLE/DB_SCCVIRT/User%%</user>
+        <password>%%CONNECTIONS/BBDD/ORACLE/DB_SCCVIRT/Pass%%</password>
+    </config>
+</BWSharedResource>

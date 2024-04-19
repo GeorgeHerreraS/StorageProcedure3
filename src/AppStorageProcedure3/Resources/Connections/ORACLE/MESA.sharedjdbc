@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BWSharedResource>
+    <name>MESA</name>
+    <resourceType>ae.shared.JDBCSharedResource</resourceType>
+    <config>
+        <driver>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/Driver%%</driver>
+        <maxConnections>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/MaxConn%%</maxConnections>
+        <loginTimeout>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/LoginTimeOut%%</loginTimeout>
+        <connectionType>JDBC</connectionType>
+        <UseSharedJndiConfig>false</UseSharedJndiConfig>
+        <location>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/JDBCUrl%%</location>
+        <user>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/User%%</user>
+        <password>%%CONNECTIONS/BBDD/ORACLE/DB_MESA/Pass%%</password>
+    </config>
+</BWSharedResource>

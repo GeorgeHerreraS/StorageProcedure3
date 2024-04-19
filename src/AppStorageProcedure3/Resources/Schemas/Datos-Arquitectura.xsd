@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="Cabecera">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="HOST">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="USUARIO-ALT" type="xs:string"/>
+							<xs:element name="TERMINAL-ALT" type="xs:string"/>
+							<xs:element name="CANAL-ID" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CanalFisico" type="xs:string"/>
+				<xs:element name="CanalLogico" type="xs:string"/>
+				<xs:element name="RutCliente" type="xs:string"/>
+				<xs:element name="RutUsuario" type="xs:string"/>
+				<xs:element name="IpCliente" type="xs:string"/>
+				<xs:element name="InfoDispositivo" type="xs:string"/>
+				<xs:element name="InfoDataPower" type="xs:string"/>
+				<xs:element name="InfoArquitectura" type="xs:string"/>
+				<xs:element name="InfoGeneral" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

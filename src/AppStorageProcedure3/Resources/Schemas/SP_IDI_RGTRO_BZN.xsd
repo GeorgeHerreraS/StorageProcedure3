@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_IDI_RGTRO_BZN.xsd"
+	 xmlns:ns0="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd"
+	 targetNamespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_IDI_RGTRO_BZN.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" schemaLocation="INFO.xsd"/>
+	<xs:element name="INPUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="I_RUT" type="xs:string"/>
+				<xs:element name="I_COD_DOC_FNT" type="xs:string"/>
+				<xs:element name="I_COD_CTG_BZN" type="xs:string"/>
+				<xs:element name="I_USR_ING_REG" type="xs:string"/>
+				<xs:element name="I_FLG_EST_REG" type="xs:string"/>
+				<xs:element name="I_COD_CNL_TBG" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response_SP_IDI_RGTRO_BZN">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns0:INFO"/>
+				<xs:element name="OUTPUT" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Escalares" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="O_COD" type="xs:string" minOccurs="0"/>
+										<xs:element name="O_MSG" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

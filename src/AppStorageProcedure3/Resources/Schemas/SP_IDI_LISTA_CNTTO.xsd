@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_IDI_LISTA_CNTTO.xsd"
+	 xmlns:ns0="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd"
+	 targetNamespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/SP_IDI_LISTA_CNTTO.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" schemaLocation="INFO.xsd"/>
+	<xs:element name="INPUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="I_USR_CNA" type="xs:string"/>
+				<xs:element name="I_RUT_CLNTE" type="xs:string"/>
+				<xs:element name="I_COD_CNL_FIS" type="xs:string"/>
+				<xs:element name="I_NUM_CTT_CLT" type="xs:string"/>
+				<xs:element name="I_PFL_USR" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response_SP_IDI_LISTA_CNTTO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns0:INFO"/>
+				<xs:element name="OUTPUT" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Escalares" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="O_COD" type="xs:string" minOccurs="0"/>
+										<xs:element name="O_MSG" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Resultsets" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ResultSet1" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Record1" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="NUM_CTT_CLT" type="xs:string" minOccurs="0"/>
+																<xs:element name="GEN_DATOS" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PGTKX001.xsd"
+	 xmlns:ns0="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd"
+	 targetNamespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/PGTKX001.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" schemaLocation="INFO.xsd"/>
+	<xs:element name="INPUT">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="Response_PGTKX001">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns0:INFO"/>
+				<xs:element name="OUTPUT" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Escalares" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="P_NOMBRE_EMPRESA" type="xs:string" minOccurs="0"/>
+										<xs:element name="P_EMPRESA_RUT" type="xs:string" minOccurs="0"/>
+										<xs:element name="P_RESPONSABLE" type="xs:string" minOccurs="0"/>
+										<xs:element name="P_WARNING" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

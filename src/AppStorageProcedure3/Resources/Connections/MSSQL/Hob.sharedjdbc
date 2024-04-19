@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BWSharedResource>
+    <name>Hob</name>
+    <resourceType>ae.shared.JDBCSharedResource</resourceType>
+    <config>
+        <driver>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/Driver%%</driver>
+        <maxConnections>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/MaxConn%%</maxConnections>
+        <loginTimeout>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/LoginTimeOut%%</loginTimeout>
+        <connectionType>JDBC</connectionType>
+        <UseSharedJndiConfig>false</UseSharedJndiConfig>
+        <location>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/JDBCUrl%%</location>
+        <user>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/User%%</user>
+        <password>%%CONNECTIONS/BBDD/MSSQL/DB_Hob/Pass%%</password>
+    </config>
+</BWSharedResource>

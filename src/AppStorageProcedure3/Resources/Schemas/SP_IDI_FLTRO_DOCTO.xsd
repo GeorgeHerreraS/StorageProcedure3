@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/schemas/AppStorageProcedure3/Resources/Schemas/SP_IDI_FLTRO_DOCTO.xsd"
+	 xmlns:ns0="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd"
+	 targetNamespace="http://www.tibco.com/schemas/AppStorageProcedure3/Resources/Schemas/SP_IDI_FLTRO_DOCTO.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" schemaLocation="INFO.xsd"/>
+	<xs:element name="INPUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="I_USR_CNA" type="xs:string"/>
+				<xs:element name="I_RUT_CLNTE" type="xs:string"/>
+				<xs:element name="I_NUM_CONTRT" type="xs:string"/>
+				<xs:element name="I_COD_TPO_BANCO" type="xs:string"/>
+				<xs:element name="I_COD_CNL_FIS" type="xs:string"/>
+				<xs:element name="I_LINEA" type="xs:string"/>
+				<xs:element name="I_PAGINA" type="xs:string"/>
+				<xs:element name="I_PFL_USR" type="xs:string"/>
+				<xs:element name="I_ANO_DES" type="xs:string"/>
+				<xs:element name="I_ANO_HAS" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response_SP_IDI_FLTRO_DOCTO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns0:INFO"/>
+				<xs:element name="OUTPUT" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Escalares" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="O_COD" type="xs:string" minOccurs="0"/>
+										<xs:element name="O_MSG" type="xs:string" minOccurs="0"/>
+										<xs:element name="O_PAGINA" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Resultsets" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ResultSet1" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Record1" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="COD_TPO_IMG_BCO" type="xs:string" minOccurs="0"/>
+																<xs:element name="GLS_TPO_IMG_BCO" type="xs:string" minOccurs="0"/>
+																<xs:element name="IDF_DOC_CND" type="xs:string" minOccurs="0"/>
+																<xs:element name="COD_CND_ORG" type="xs:string" minOccurs="0"/>
+																<xs:element name="FLG_PST_SLO" type="xs:string" minOccurs="0"/>
+																<xs:element name="FLG_CPE_GAL" type="xs:string" minOccurs="0"/>
+																<xs:element name="FEC_CRC_IMG" type="xs:string" minOccurs="0"/>
+																<xs:element name="NUM_CTT_CLT" type="xs:string" minOccurs="0"/>
+																<xs:element name="COD_ECN_DOC_IMG" type="xs:string" minOccurs="0"/>
+																<xs:element name="COD_TPD_CND" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

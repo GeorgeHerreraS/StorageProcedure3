@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BWSharedResource>
+    <name>COMEX</name>
+    <resourceType>ae.shared.JDBCSharedResource</resourceType>
+    <config>
+        <driver>%%CONNECTIONS/BBDD/ORACLE/DB_COMEX/Driver%%</driver>
+        <maxConnections>%%CONNECTIONS/BBDD/ORACLE/DB_COMEX/MaxConn%%</maxConnections>
+        <loginTimeout>%%CONNECTIONS/BBDD/ORACLE/DB_COMEX/TimeOut%%</loginTimeout>
+        <connectionType>JDBC</connectionType>
+        <UseSharedJndiConfig>false</UseSharedJndiConfig>
+        <location>%%CONNECTIONS/BBDD/ORACLE/DB_COMEX/JDBCUrl%%</location>
+        <password>%%CONNECTIONS/BBDD/ORACLE/DB_COMEX/Pass%%</password>
+        <user>%%CONNECTIONS/BBDD/ORACLE/DB_COMEX/User%%</user>
+    </config>
+</BWSharedResource>

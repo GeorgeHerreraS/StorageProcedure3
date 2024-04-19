@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/sp_hob_cna_dts_tef_trm.xsd"
+	 xmlns:ns0="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd"
+	 targetNamespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/sp_hob_cna_dts_tef_trm.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="https://itg.santander.cl/AppStorageProcedure3/Resources/Schemas/INFO.xsd" schemaLocation="INFO.xsd"/>
+	<xs:element name="INPUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nro_doc_cgo" type="xs:string"/>
+				<xs:element name="fch_des_trm" type="xs:string"/>
+				<xs:element name="fch_has_trm" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response_sp_hob_cna_dts_tef_trm">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns0:INFO"/>
+				<xs:element name="OUTPUT" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Escalares" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ReturnValue" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Resultsets" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ResultSet1" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Record1" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="fch_hra_lnz_trn" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_est_tef" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_tpo_tef" type="xs:string" minOccurs="0"/>
+																<xs:element name="fch_ctb" type="xs:string" minOccurs="0"/>
+																<xs:element name="fch_hra_cgo" type="xs:string" minOccurs="0"/>
+																<xs:element name="nro_cta_cgo_usr_innet" type="xs:string" minOccurs="0"/>
+																<xs:element name="nro_cta_abn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nro_doc_abn" type="xs:string" minOccurs="0"/>
+																<xs:element name="nom_bfc" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_bco_cca" type="xs:string" minOccurs="0"/>
+																<xs:element name="mnt_tef" type="xs:string" minOccurs="0"/>
+																<xs:element name="fch_abn" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_aplc" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_tml" type="xs:string" minOccurs="0"/>
+																<xs:element name="gls_email_avs_tef" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_rch_tef" type="xs:string" minOccurs="0"/>
+																<xs:element name="cod_tpo_doc_abn" type="xs:string" minOccurs="0"/>
+																<xs:element name="flg_slt_otp" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

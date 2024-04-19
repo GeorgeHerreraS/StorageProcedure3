@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="Resultsets">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ResultSet1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Record1" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="COD_TPO_IMG_BCO" type="xs:string" minOccurs="0"/>
+										<xs:element name="GLS_TPO_IMG_BCO" type="xs:string" minOccurs="0"/>
+										<xs:element name="IDF_DOC_CND" type="xs:string" minOccurs="0"/>
+										<xs:element name="COD_CND_ORG" type="xs:string" minOccurs="0"/>
+										<xs:element name="FLG_PST_SLO" type="xs:string" minOccurs="0"/>
+										<xs:element name="FLG_CPE_GAL" type="xs:string" minOccurs="0"/>
+										<xs:element name="FEC_CRC_IMG" type="xs:string" minOccurs="0"/>
+										<xs:element name="NUM_CTT_CLT" type="xs:string" minOccurs="0"/>
+										<xs:element name="COD_ECN_DOC_IMG" type="xs:string" minOccurs="0"/>
+										<xs:element name="COD_TPD_CND" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
